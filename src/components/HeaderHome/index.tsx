@@ -1,9 +1,9 @@
-import { Image, Text, View, ImageBackground, TouchableOpacity,  } from "react-native";
+import { Image, Text, View, ImageBackground, TouchableOpacity, StyleSheet  } from "react-native";
 import {Bell, ArrowCircleRight} from "phosphor-react-native"
 
 export function HeaderHome(){
   return(
-    <View className="bg-neutral-900 pb-4 rounded-b-3xl">
+    <View className="bg-neutral-900 pb-4" style={styles.borderStyle}>
         <View className="p-6 flex-row justify-around items-center">
           <Image source={require('../../assets/moca.jpg')} className="w-14 h-14 rounded-full" />
           <View className="items-center">
@@ -38,3 +38,10 @@ export function HeaderHome(){
     
   )
 }
+
+const styles = StyleSheet.create({
+  borderStyle: {
+    borderBottomRightRadius: 40,
+    borderBottomLeftRadius: 40,
+  }
+});
