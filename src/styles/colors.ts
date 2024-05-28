@@ -10,6 +10,6 @@ export const colors = {
     900: "#151415"
   },
   green: {
-    800: "#00592E"
+    800: "background: #00592E"
   }
 }
