@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native"
 import { CaretRight, ChatCenteredDots, ChatCircleText } from "phosphor-react-native";
+import { Link } from "expo-router";
 
 
 interface boxModelParams {
@@ -26,7 +27,10 @@ export function BoxModel( {title, desc, bgColor=false} : boxModelParams) {
 
               <View className="flex-row p-2 bg-gray-600 rounded-2xl">
                 <TouchableOpacity className="">
-                  <CaretRight color="white" size={22}/>
+                  <Link href={"/treino"}>
+                    <CaretRight color="white" size={22}/>
+                  </Link>
+                  
                 </TouchableOpacity> 
               </View>
             </View>
