@@ -3,10 +3,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { HeaderHome } from "../../components/HeaderHome";
 import { CheckDay } from "../../components/CheckDay";
 import { ArrowCircleRight, ClipboardText, CheckFat } from "phosphor-react-native";
-import { setDates } from "../../classes/WeekDays";
+import { getDates } from "../../classes/WeekDays/WeekDays";
 
 export function Treino(){
-    const week = setDates();
+    const week = getDates();
     return(
       <SafeAreaView style={{flex: 1}}>
         <View className="bg-gray-950 flex-1">

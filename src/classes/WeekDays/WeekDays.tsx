@@ -14,7 +14,7 @@ function formatWeek(weekArray:number[], lastMonthDays:number, monthDays:number){
     return weekArray
 }
 
-export function setDates(){
+export function getDates(){
     const date = new Date()
     const actualMonth:number = date.getMonth() + 1
     const actualYear = date.getFullYear();
