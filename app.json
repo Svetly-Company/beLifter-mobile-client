@@ -27,12 +27,8 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-<<<<<<< HEAD
       "expo-font",
       "expo-router"
-=======
-      "expo-font"
->>>>>>> 2f741ecaed913149172d24145e0e55a053e2ccb3
     ]
   }
 }
