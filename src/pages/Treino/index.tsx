@@ -1,38 +1,57 @@
-import { ImageBackground, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View, ScrollView, TouchableHighlight, Image } from "react-native";
+import { CaretDown, CaretUp } from "phosphor-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { HeaderHome } from "../../components/HeaderHome";
-import { CheckDay } from "../../components/CheckDay";
-import { ArrowCircleRight, ClipboardText, CheckFat } from "phosphor-react-native";
-import { getDates } from "../../classes/WeekDays/WeekDays";
+import { Frequency } from "../../components/Frequency";
+import { Workouts } from "../../components/Workouts";
+import { useState } from "react";
+
 
 export function Treino(){
-    const week = getDates();
+    let [status, setStatus] = useState(false);
+    function toggleStatus(){
+      setStatus(!status)
+    }
     return(
       <SafeAreaView style={{flex: 1}}>
-        <View className="bg-gray-950 flex-1">
+        <ScrollView className="bg-gray-950 flex-1">
           <HeaderHome />
-          <View className="mt-8 px-8">
-            <View className="flex gap-2 flex-col">
+          <Frequency />
+          <View className="flex gap-2 flex-col mt-8">
+            <Text className=" px-8 lex-1 font-ibmRegular text-white text-x">Fichas de Treino</Text>
+            <ScrollView horizontal={true} className="px-3 flex mt-2 flex-row">
+              <Workouts source={require("../../assets/mulherTreinando.webp")} text="Treino A" description="Peito/Ombro"/>
+              <Workouts source={require("../../assets/homemTreinando.webp")} text="Treino B" description="Quadriceps/Posterior"/>
+            </ScrollView>
+            <View className="flex gap-2 flex-col mt-8 px-8">
+              <View className="flex flex-row justify-between">
+                <Text className="text-gray-300 font-ibmMedium">Criada por:</Text>
                 <View className="flex flex-row">
-                  <Text className="flex-1 font-ibmRegular text-white text-x">Frequência de Treino</Text>
-                  <TouchableOpacity>
-                      <ArrowCircleRight color="white" size={15}/>
-                  </TouchableOpacity>
+                  <Text className="font-ibmMedium text-gray-300">Ver histórico</Text>
+                  <TouchableHighlight onPress={() =>toggleStatus()}>
+                    { status ? <CaretUp color="white" size={19} weight="fill"/> : <CaretDown color="white" size={19} weight="fill"/>}
+                  </TouchableHighlight>
                 </View>
-                <View className="flex gap-4 mt-2 flex-row justify-center">
-                  <CheckDay date={week[1]} checked="unchecked">DOM</CheckDay>
-                  <CheckDay date={week[1]} checked="unchecked">SEG</CheckDay>
-                  <CheckDay date={week[2]} checked="unchecked">TER</CheckDay>
-                  <CheckDay date={week[3]} checked="unchecked">QUA</CheckDay>
-                  <CheckDay date={week[4]} checked="unchecked">QUI</CheckDay>
-                  <CheckDay date={week[5]} checked="unchecked">SEX</CheckDay>
-                  <CheckDay date={week[6]} checked="unchecked">SAB</CheckDay>
+              </View>
+              <View>
+              {
+                status ?
+                <View className="flex flex-col my-2">
+                  <View className="flex-row justify-between items-center px-5">
+                    <View className="flex flex-row gap-5 items-center">
+                      <Image source={require('../../assets/moca.jpg')} className="w-10 h-10 rounded-full" />
+                      <Text className="text-gray-300 font-ibmRegular">Haulices Dalberto Solza</Text>
+                    </View>
+                    <Text className="text-gray-1050 font-ibmRegular">01/05</Text>
+                  </View>
                 </View>
+                :
+                <View/>
+              }
+              </View>
             </View>
           </View>
-
-        </View>
-        
+        </ScrollView>
       </SafeAreaView>
     )
-  }
+}

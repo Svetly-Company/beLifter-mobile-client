@@ -21,10 +21,10 @@ export function HeaderHome(){
         </View>
         <View className="w-max h-52 px-6 border-box ">
           <ImageBackground className="flex-1 justify-end rounded-3xl p-4
-          " source={require('../../assets/mulherTreinando.jpg')} resizeMode="cover" imageStyle={{borderRadius: 20}}>
+          " source={require('../../assets/mulherTreinando.webp')} resizeMode="cover" imageStyle={{borderRadius: 20}}>
             <View className="flex flex-row justify-between px-2">
               <View >
-                <Text className="text-white text-xl font-ibmMedium drop-shadow-lg">Treino de Hoje(B)</Text>
+                <Text className="text-white text-xl font-ibmMedium drop-shadow-lg">Treino de Hoje(A)</Text>
                 <Text className="text-slate-200 font-ibmRegular font-thin drop-shadow-lg">Abdomen, Peito e Biceps</Text>
               </View>     
 
