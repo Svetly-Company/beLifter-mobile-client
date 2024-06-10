@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, View, ScrollView, TouchableHighlight, Image } from "react-native";
+import { Text, View, ScrollView, TouchableHighlight, Image } from "react-native";
 import { CaretDown, CaretUp } from "phosphor-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { HeaderHome } from "../../components/HeaderHome";
@@ -13,8 +13,8 @@ export function Treino(){
       setStatus(!status)
     }
     return(
-      <SafeAreaView style={{flex: 1}}>
-        <ScrollView className="bg-gray-950 flex-1">
+        <SafeAreaView style={{flex: 1}}>
+          <ScrollView className="bg-gray-950 flex-1">
           <HeaderHome />
           <Frequency />
           <View className="flex gap-2 flex-col mt-8">
