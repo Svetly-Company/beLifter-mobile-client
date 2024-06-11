@@ -1,19 +1,102 @@
-import { ImageBackground, Text, TouchableOpacity, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import HeaderHome from "../../components/HeaderHome";
-import { BoxModel } from "../../components/BoxModel";
+import { SafeAreaView,ScrollView,StatusBar, StyleSheet, Text, Button, useColorScheme, View, TextInput, TouchableOpacity, ImageBackground, Image, Pressable } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { Link } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
 
-export default function Home(){
-  return(
-    <SafeAreaView style={{flex: 1}}>
-      <View className="bg-gray-950 flex-1">
-        <HeaderHome />
-        <View className="mt-8 mx-4 border-b-2 pb-12 border-gray-400">
-          <BoxModel title="Pendências" desc="Resolva suas pendências"/>
-          <BoxModel title="Atendimento" desc="Fale com um de nossos especialistas da academia" bgColor/>
+
+
+
+export default function LoginOptions(  navigation : any  ) {
+
+  return (
+    <View style={styles.container}>
+      <ImageBackground source={require ("../../assets/Background.webp")} style={[styles.image, styles.blur]}>
+        <Image source={require ("../../assets/LogoLight.png")} style={styles.logo}></Image>
+        <View style={styles.bottomDiv}>
+            <Link href={"/loginScreen"} asChild>
+            <TouchableOpacity style={styles.beginButton}> 
+                
+                    <Text>Começar</Text>  
+                
+                </TouchableOpacity>
+            </Link>
+          <Pressable>
+            <Text style={styles.accountText}>Já tenho uma conta</Text>
+          </Pressable>
         </View>
-      </View>
-    </SafeAreaView>
-  )
+      </ImageBackground>
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    fontFamily: 'sans-serif',
+    flex: 1,
+    backgroundColor: 'black',
+    alignItems: 'center',
+    textAlign: 'center',
+    alignContent: 'center',
+    display: 'flex',
+    
+  },
+  image: {
+    flex: 1,
+    display: 'flex',
+    alignContent: 'center',
+    textAlign: 'center',
+    justifyContent: 'space-between',
+  },
+  button: {
+    width: 317,
+    height: 40,
+    backgroundColor : 'white',
+    borderRadius: 10,
+    display: 'flex',
+    flexDirection:'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 7,
+  },
+  imageicon: {
+    width: 20,
+    height: 20,
+  },
+  bigDiv: {
+    height: '30%',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  accountText: {
+    color: 'white',
+    marginHorizontal: 'auto',
+  },
+  beginButton: {
+    width: 317,
+    height: 40,
+    backgroundColor : 'white',
+    borderRadius: 20,
+    display: 'flex',
+    flexDirection:'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 'auto',
+    fontWeight: 'bold',
+  },
+  logo: {
+    marginHorizontal: 85,
+  },
+  blur: {
+    
+  },
+  bottomDiv: {
+    height: 140,
+    gap:10,
+    alignItems: 'center',
+    alignContent: 'center',
+  }
+});

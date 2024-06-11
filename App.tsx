@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import './src/styles/global.css'
-import Home from './src/app/(tabs)';
+import Home from './src/app/(tabs)/home';
+import LoginOptions from './src/app/(tabs)/index';
 
 import { 
   useFonts,
@@ -39,7 +40,7 @@ export default function App() {
     <>
     <StatusBar backgroundColor={'#111112'} style="light" translucent/>
     {
-      fontsLoaded? <Home /> : ''
+      fontsLoaded? <LoginOptions /> : ''
     }
     
     </>
