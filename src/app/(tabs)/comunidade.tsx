@@ -34,9 +34,9 @@ export default function Comunidade(){
                     <Text className="font-ibmMedium rounded-full px-2 py-1 text-white">A seguir</Text>
                 </TouchableOpacity>
             </View>
-            <Post/>
-            <Post/>
-            <Post/>
+            <Post image={require('../../assets/mulherTreinando.webp')}/>
+            <Post image={require('../../assets/homemTreinando.webp')}/>
+            <Post image={require('../../assets/moca.jpg')}/>
         </ScrollView>
     </SafeAreaView>
     )
