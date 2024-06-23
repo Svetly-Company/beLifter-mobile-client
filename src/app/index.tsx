@@ -3,25 +3,22 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { Link } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 
-
-
-
 export default function LoginOptions(  navigation : any  ) {
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={require ("../../assets/Background.webp")} style={[styles.image, styles.blur]}>
-        <Image source={require ("../../assets/LogoLight.png")} style={styles.logo}></Image>
+      <ImageBackground source={require ("../assets/Background.webp")} style={[styles.image, styles.blur]}>
+        <Image source={require ("../assets/LogoLight.png")} style={styles.logo}></Image>
         <View style={styles.bottomDiv}>
             <Link href={"/loginScreen"} asChild>
-            <TouchableOpacity style={styles.beginButton}> 
+              <TouchableOpacity style={styles.beginButton}> 
                 
                     <Text>Começar</Text>  
                 
                 </TouchableOpacity>
             </Link>
           <Pressable>
-            <Text style={styles.accountText}>Já tenho uma conta</Text>
+            <Text className='color-white'>Já tenho uma conta</Text>
           </Pressable>
         </View>
       </ImageBackground>

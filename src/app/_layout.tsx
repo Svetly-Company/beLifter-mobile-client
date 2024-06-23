@@ -42,7 +42,7 @@ export default function Layout(){
       
     return (
         <>
-            <StatusBar backgroundColor={'#111112'} style="light" translucent/>
+            <StatusBar translucent/>
             <GestureHandlerRootView>                
                 {
                     fontsLoaded? <Slot /> : ''
