@@ -4,13 +4,6 @@ import { StatusBar } from "expo-status-bar";
 import { AccessibilityState, GestureResponderEvent, Text, TouchableOpacity, StyleSheet } from "react-native";
 import {BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
 
-interface tabButtonProps{
-  children: React.ReactNode;
-  onPress(): (event: GestureResponderEvent) => void;
-  accessibilityState: AccessibilityState;
-
-}
-
 export default function TabLayout(){
   return(
     <>
