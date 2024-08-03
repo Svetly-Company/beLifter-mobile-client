@@ -3,20 +3,18 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { LinearGradient } from 'expo-linear-gradient';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Link, router } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
+import { setUserData } from '../storage/userData/setUserData';
 
 
 
 export default function LoginScreen( ) {
 
-    interface dataModel{
-        access_token: string
-    }
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState<string>('');
-    const [accessToken, setAccessToken] = useState<dataModel>()
+    const [accessToken, setAccessToken] = useState<string>('')
 
     function handleSetEmail(text: string){
         setEmail(text);
@@ -25,6 +23,7 @@ export default function LoginScreen( ) {
     function handleSetPassword(text: string){
         setPassword(text)
     }
+
 
     async function verifyUser(){
         try{
@@ -36,15 +35,23 @@ export default function LoginScreen( ) {
                 if(res.data.status){
                     throw new Error(String(res.data.message))
                 }
+                
                 return JSON.stringify(res.data)
             }).catch((err) => {throw err})
                 
-            const parsedToken = JSON.parse(val) 
+            
+            const parsedToken = JSON.parse(val)
+            
             setAccessToken(parsedToken['access_token'])
+            await getUserFromToken(parsedToken['access_token'])
             router.navigate('/home')
+            
+            
         }catch(err){
-            ToastAndroid.show('Usuário inexistente', ToastAndroid.SHORT)
+            ToastAndroid.show(`Usuário inexistente ${err}`, ToastAndroid.SHORT)
         }
+
+        
 
         // const verifyToken = await axios.get('https://belifter-server.onrender.com/auth/profile', {
         //     headers: {
@@ -54,9 +61,25 @@ export default function LoginScreen( ) {
         //     return res.status==200 ? true : false
         // })
         
-        
-        
 
+        
+    }
+
+    async function getUserFromToken(token? : string){
+        if(token==undefined){
+            return;
+        }
+
+        const userData = await axios.get('https://belifter-server.onrender.com/auth/profile', { 
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }).then((res) => {
+            
+            return JSON.stringify(res.data)
+        }).catch((err) => {throw new err})
+
+        setUserData(userData)
         
     }
   return (
