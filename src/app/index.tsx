@@ -1,28 +1,28 @@
 import { SafeAreaView,ScrollView,StatusBar, StyleSheet, Text, Button, useColorScheme, View, TextInput, TouchableOpacity, ImageBackground, Image, Pressable } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { Link } from 'expo-router';
-import { LinearGradient } from 'expo-linear-gradient';
-
+import { Link, router } from 'expo-router';
 export default function LoginOptions(  navigation : any  ) {
 
+
+
   return (
-    <View style={styles.container}>
-      <ImageBackground source={require ("../assets/Background.webp")} style={[styles.image, styles.blur]}>
-        <Image source={require ("../assets/LogoLight.png")} style={styles.logo}></Image>
-        <View style={styles.bottomDiv}>
-            <Link href={"/registerScreen"} asChild>
-              <TouchableOpacity style={styles.beginButton}> 
-                
-                    <Text>Começar</Text>  
-                
-                </TouchableOpacity>
+      <View style={styles.container}>
+        <ImageBackground source={require ("../assets/Background.webp")} style={[styles.image, styles.blur]}>
+          <Image source={require ("../assets/LogoLight.png")} style={styles.logo}></Image>
+          <View style={styles.bottomDiv}>
+              <Link href={"/home"} asChild>
+                <TouchableOpacity style={styles.beginButton}> 
+                  
+                      <Text>Começar</Text>  
+                  
+                  </TouchableOpacity>
+              </Link>
+            <Link href={"/loginScreen"}>
+              <Text className='color-white'>Já tenho uma conta</Text>
             </Link>
-          <Link href={"/loginScreen"}>
-            <Text className='color-white'>Já tenho uma conta</Text>
-          </Link>
-        </View>
-      </ImageBackground>
-    </View>
+          </View>
+        </ImageBackground>
+      </View>
   );
 }
 
