@@ -1,18 +1,38 @@
 import { Link, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View, Modal, Button } from "react-native";
 import { GestureDetector, State, HandlerStateChangeEvent, GestureEvent, Gesture } from "react-native-gesture-handler";
 import { Barbell, CaretRight, Timer, Upload } from "phosphor-react-native";
+import { getUserData } from "../storage/userData/getUserData";
 import * as ImagePicker from 'expo-image-picker'
 
 import Animated from "react-native-reanimated";
+import axios from "axios";
+import { err } from "react-native-svg";
 export default function PostForm() {
+
+
+  const [user, setUser] = useState({
+    token: ''
+  })
+
+  useEffect(()=>{
+    loadUserData()
+  }, [user])
+
+  async function loadUserData(){
+    const userData = await getUserData()
+
+    setUser(userData)
+  }
+
 
   const [changeEvent, setChangeEvent] = useState<boolean>(false)
   const [hours, setHours] = useState('')
-  const [weight, setWeight] = useState('0')
+  const [weight, setWeight] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
+  const [description, setDescription] = useState('')
   const [image, setImage] = useState('')
   async function pickImage() {
     let res = await ImagePicker.launchImageLibraryAsync({
@@ -39,10 +59,9 @@ export default function PostForm() {
     setModalVisible(false)
   }
 
-  function handleChangeTimer(time : boolean) {
+  function handleChangeValues(time : boolean) {
 
     setChangeEvent(time)
-
     setModalVisible(true)
 
   }
@@ -51,6 +70,41 @@ export default function PostForm() {
     const numericVal = text.replace(/[^0-9]/g, "")
     changeEvent ? setHours(numericVal) : setWeight(numericVal)
   }
+
+  async function handleSubmitPost(){
+    try{
+      console.log(user.token)
+      console.log(description)
+      const userPost = await axios
+        .post('https://belifter-server.onrender.com/posts/create', {
+          content: `${description}`,
+          mediaUrl: '',
+        }, {
+          headers: {
+            'Authorization': `Bearer ${user.token}`
+          },
+        })
+        .then((res) => {
+          if (res.data.status) {
+            throw new Error(String(res.data.message));
+          }
+      
+          return JSON.stringify(res.data);
+        })
+        .catch((err) => {
+          if (err.response && err.response.status === 401) {
+            console.log('Unauthorized request');
+          } else {
+            throw err;
+          }
+        });
+
+    console.log(userPost)
+    }catch(err){
+      throw err
+    }
+  }
+
 
   return (
     <>
@@ -78,14 +132,16 @@ export default function PostForm() {
             }
           </View>
           <View className="flex-row justify-center gap-12 mt-4 bg-neutral-900 w-4/5 rounded-full h-16">
-            <ExerciseInfo title="Duração" desc={`${Math.floor(Number(hours)/60)}h ${Math.round(Number(hours)%60)} min`} time={true} changeTimer={handleChangeTimer} />
+            <ExerciseInfo title="Duração" desc={`${Math.floor(Number(hours)/60)}h ${Math.round(Number(hours)%60)} min`} time={true} changeTimer={handleChangeValues} />
 
-            <ExerciseInfo title="Volume" desc={`${weight} Kg`} time={false} changeTimer={handleChangeTimer} />
+            <ExerciseInfo title="Volume" desc={`${weight} Kg`} time={false} changeTimer={handleChangeValues} />
           </View>
 
           <View className="w-full px-8 pt-8 pb-4">
             <TextInput className="w-full border-b border-white font-regular text-neutral-400"
               placeholder="Escreva uma legenda..."
+              value={description}
+              onChangeText={setDescription}
               placeholderTextColor={"#d8d8d86a"}
             />
           </View>
@@ -106,7 +162,7 @@ export default function PostForm() {
 
           <View className="flex-row w-full items-end justify-center flex-1">
             <View className="h-44 w-full items-center justify-center">
-              <TouchableOpacity>
+              <TouchableOpacity onPress={handleSubmitPost}>
                 <View className="w-52 h-12 rounded-3xl bg-green-450 items-center justify-center">
                   <Text className="text-white font-regular">Salvar treino</Text>
                 </View>

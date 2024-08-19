@@ -21,8 +21,8 @@ export default function HeaderHome({user} : HeaderHomeParams){
         <View className="p-6 flex-row justify-around items-center">
           <Image source={require('../../assets/moca.jpg')} className="w-14 h-14 rounded-full" />
           <View className="items-center">
-            <Text className="text-white text-xl font-ibmRegular">Bem-vindo</Text>
-            <Text className="text-green-400 text-2xl font-ibmMedium font-semibold">{user ? user.name : 'Pedro'},</Text>
+            <Text className="text-white text-xl font-ibmRegular">Bem-vindo(a),</Text>
+            <Text className="text-green-400 text-2xl font-ibmMedium font-semibold">{user ? user.name : 'Pedro'}.</Text>
           </View>
           <Bell color="white" weight="bold" size={28}/>
 

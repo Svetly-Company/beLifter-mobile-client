@@ -75,10 +75,10 @@ export default function LoginScreen( ) {
                 'Authorization': `Bearer ${token}`
             }
         }).then((res) => {
-            
-            return JSON.stringify(res.data)
+            const savedData = {...res.data, token}
+            return JSON.stringify(savedData)
         }).catch((err) => {throw new err})
-
+        
         setUserData(userData)
         
     }

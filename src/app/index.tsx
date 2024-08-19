@@ -10,7 +10,7 @@ export default function LoginOptions(  navigation : any  ) {
         <ImageBackground source={require ("../assets/Background.webp")} style={[styles.image, styles.blur]}>
           <Image source={require ("../assets/LogoLight.png")} style={styles.logo}></Image>
           <View style={styles.bottomDiv}>
-              <Link href={"/home"} asChild>
+              <Link href={"/registerScreen"} asChild>
                 <TouchableOpacity style={styles.beginButton}> 
                   
                       <Text>Começar</Text>  

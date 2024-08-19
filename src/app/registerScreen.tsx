@@ -55,7 +55,7 @@ export default function RegisterScreen(){
         
         
     }catch(err){
-        ToastAndroid.show(`Usuário inexistente ${err}`, ToastAndroid.SHORT)
+        ToastAndroid.show(`Erro ao preencher os campos ${err}`, ToastAndroid.SHORT)
     }
 
     

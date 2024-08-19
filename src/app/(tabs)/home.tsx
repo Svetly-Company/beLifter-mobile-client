@@ -17,6 +17,7 @@ export default function Home(){
 
   async function loadUserData(){
     const userData = await getUserData()
+
     setUser(userData)
   }
   const pan = Gesture.Pan().runOnJS(true).onEnd((e) => {
