@@ -2,15 +2,15 @@ import { View, Text, Image } from 'react-native';
 import { HeartStraight } from "phosphor-react-native";
 
 
-export function Comment(){
+export function Subcomment(){
     return(
-        <View className='ml-15'>
+        <View className='ml-16'>
 
             <View className='flex flex-row'>
 
                 <View className="flex gap-3 ml-10 mt-5">
 
-                    <Image source={require('../../assets/moca.jpg')} className="w-9 h-9 rounded-full" />
+                    <Image source={require('../../assets/moca.jpg')} className="w-10 h-10 rounded-full" />
                   
                 </View>
                     
@@ -27,7 +27,7 @@ export function Comment(){
 
                 </View>
 
-                <View className='ml-6 mt-9'>
+                <View className='ml-14 mt-9'>
                     <HeartStraight size={19} color="white" weight="regular"/>
                 </View>
             </View>
