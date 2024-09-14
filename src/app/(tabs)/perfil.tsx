@@ -6,7 +6,8 @@ import { Link, router, useNavigation } from 'expo-router';
 import { getUserData } from "../../storage/userData/getUserData";
 import { useEffect, useState } from "react";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import { CaretLeft, UploadSimple, DotsThree, CaretDown, Fire, Footprints, Gauge } from "phosphor-react-native";
+import { CaretLeft, UploadSimple, DotsThree, CaretDown, Fire, Footprints, Gauge, CalendarBlank } from "phosphor-react-native";
+
 
 export default function Profile() {
   return (
@@ -85,19 +86,24 @@ export default function Profile() {
 
           </View>
 
-          <View className="flex flex-1 gap-5">
+          <View className="flex flex-1 gap-1">
 
-            <View className="ml-8">
-              <Text className="font-ibmMedium text-lg text-white">Luís Ricarda</Text>
+            <View className="ml-8 flex gap-2">
+
+              <View>
+                <Text className="font-ibmMedium text-lg text-white">Luís Ricarda</Text>
+              </View>
+
+              <View>
+                <Text className="font-ibmRegular text-lg text-white">Em briga de saci, todo chute é voadora!  </Text>
+              </View>
+
+
             </View>
 
-            <View className="ml-8">
-             
-            </View>
+            <View className="items-center flex w-full">
 
-            <View className="items-center flex w-full bg-red-400">
-
-              <TouchableOpacity style={{ backgroundColor: "#00BF63", height: 46, width: 300, alignItems: "center", justifyContent: "center", marginTop: 28, borderRadius: 40, }}>
+              <TouchableOpacity style={{ backgroundColor: "#00BF63", height: 46, width: 360, alignItems: "center", justifyContent: "center", marginTop: 28, borderRadius: 40, }}>
                 <Text className="text-white">Editar perfil</Text>
               </TouchableOpacity>
 
@@ -110,9 +116,9 @@ export default function Profile() {
       </View>
 
 
-      <ScrollView className=" bg-black flex">
+      <ScrollView className=" bg-black flex flex-1 ">
 
-        <View className="h-min">
+        
 
           <View className="flex flex-row h-1/12 ">
 
@@ -131,11 +137,11 @@ export default function Profile() {
 
           </View>
 
-          <View className="flex">
+          <View className="flex h-full">
 
-            <View className="items-center">
+            <View className="items-center h-28">
 
-              <View className="bg-neutral-900 flex flex-1 flex-row rounded-2xl  w-5/6">
+              <View className="bg-neutral-900 flex flex-1 flex-row rounded-2xl w-5/6">
 
                 <View className="w-2/6 items-center flex py-4">
 
@@ -188,8 +194,7 @@ export default function Profile() {
 
             </View>
 
-
-            <View className="flex">
+            <View className="gap-4">
 
               <View className="ml-10 mt-3">
 
@@ -197,29 +202,53 @@ export default function Profile() {
 
               </View>
 
-              <View className="flex gap-3 items-center">
+              <View className="flex gap-5 items-center">
 
                 <View className="flex flex-row gap-5">
 
-                  <View className="bg-neutral-900 w-5/12 items-center rounded-2xl">
+                  <View className="bg-neutral-900 w-5/12 h-14 items-center rounded-2xl ">
 
-                    <Text className="font-ibmRegular text-base text-white">Estatísticas</Text>
+                    <Text className="font-ibmRegular text-base text-white py-4">Estatísticas</Text>
+
                   </View>
 
+                  <View className="bg-neutral-900 w-5/12 h-14 items-center rounded-2xl ">
 
+                    <Text className="font-ibmRegular text-base text-white py-4">Exercícios</Text>
+
+                  </View>
 
                 </View>
+
+                <View className="flex flex-row gap-5">
+
+                  <View className="bg-neutral-900 w-5/12 h-14 items-center rounded-2xl ">
+
+                    <Text className="font-ibmRegular text-base text-white py-4">Medições</Text>
+
+                  </View>
+
+                  <View className="bg-neutral-900 w-5/12 h-14 items-center rounded-2xl ">
+
+                    <Text className="font-ibmRegular text-base text-white py-4">Calendários</Text>
+
+                  </View>
+
+                </View>
+
+                
 
               </View>
 
             </View>
 
 
+          </View>
 
-
+          <View>
 
           </View>
-        </View>
+        
 
 
 
