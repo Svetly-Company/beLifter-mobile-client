@@ -6,13 +6,14 @@ import React from 'react';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import { Comments } from '../Comments';
 
-type PostImageProps = {
-    image: ImageSourcePropType;
+interface PostImageProps {
+    image: ImageSourcePropType,
+    content: string,
 }
 
 const transparent = 'rgba{0,0,0,0.5)'
 
-export function Post({image}:PostImageProps){
+export function Post({image, content}:PostImageProps,){
     let [status, setStatus] = useState(false);
     function toggleStatus(){
       setStatus(!status)
@@ -67,7 +68,7 @@ export function Post({image}:PostImageProps){
             </TouchableOpacity>
         </View>
         <View className="flex flex-col justify-center items-center mt-4">
-            <Text className="text-white text-base font-ibmRegular">Legday de hoje, posterior tá ficando enorme</Text>
+            <Text className="text-white text-base font-ibmRegular">{content}</Text>
             <View className="w-full h-72 mt-6">
                 <ImageBackground className="flex-1 justify-end" 
                 source={image} resizeMode="cover" imageStyle={{borderRadius: 30}}>

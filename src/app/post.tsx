@@ -100,6 +100,7 @@ export default function PostForm() {
         });
 
     console.log(userPost)
+    router.navigate('/comunidade')
     }catch(err){
       throw err
     }

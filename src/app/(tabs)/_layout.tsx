@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { Barbell, Globe, House } from "phosphor-react-native";
+import { Barbell, Globe, House, User } from "phosphor-react-native";
 import { StatusBar } from "expo-status-bar";
 import { AccessibilityState, GestureResponderEvent, Text, TouchableOpacity, StyleSheet } from "react-native";
 import {BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
@@ -60,6 +60,16 @@ export default function TabLayout(){
           return <TabButton {...props}/>
         }
       }}/>
+
+      <Tabs.Screen name="perfil" options={{
+        tabBarIcon: ({size, color, focused}) => (
+          <User size={size} color={color} weight="bold"/>
+        ),
+
+        tabBarButton: (props) => {
+          return <TabButton {...props}/>
+        }
+      }} />
     </Tabs>
     </>
   )

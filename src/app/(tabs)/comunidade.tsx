@@ -1,11 +1,70 @@
-import { Text, View, ScrollView, TouchableHighlight, Image, TextInput, TouchableOpacity, ImageBackground } from "react-native";
+import { Text, View, TouchableHighlight, Image, TextInput, TouchableOpacity, ImageBackground, FlatList } from "react-native";
 import { ArrowCircleRight, Bell, CaretCircleRight, CaretDown, CaretUp, DotsThree, MagnifyingGlass, PaperPlaneRight, PaperPlaneTilt, Timer } from "phosphor-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Post } from "../../components/Post";
+import { useState, useEffect } from "react";
+import { getUserData } from "../../storage/userData/getUserData";
+import axios from "axios";
+import { ScrollView } from "react-native-virtualized-view";
 
 
 export default function Comunidade(){
+    interface userModel{
+        token: string
+    }
+    interface PostObject 
+    {author: Object, comments: [], content: string, idPost: number, likes: number, media: string}
     
+    const [user, setUser] = useState<userModel>()
+
+    const [posts, setPosts] = useState<PostObject[]>([])
+
+
+    useEffect(()=>{
+        
+        const fetch = async () => {
+            if(user) {
+                loadPosts()
+                return;
+            } 
+            loadUserData() 
+            
+        }
+        fetch()
+
+        console.log(posts)
+    }, [])
+
+    async function loadUserData(){
+        const userData = await getUserData()
+        setUser(userData)
+        loadPosts()
+        console.log(userData)
+        
+    }
+
+    async function loadPosts(){
+        try{
+            if(user){
+                const values = await axios.get('https://belifter-server.onrender.com/posts/all',
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${user.token}`
+                        }
+                    })
+        
+                    setPosts(values.data)
+                    console.log(values.data)
+            }
+            
+        }catch(Err){
+            console.error(Err + 'Post')
+        }
+    }
+    
+
+
+
     return(
     <SafeAreaView style={{flex: 1}}>
         <ScrollView className="bg-gray-950 flex-1">
@@ -34,9 +93,12 @@ export default function Comunidade(){
                     <Text className="font-ibmMedium rounded-full px-2 py-1 text-white">A seguir</Text>
                 </TouchableOpacity>
             </View>
-            <Post image={require('../../assets/mulherTreinando.webp')}/>
-            <Post image={require('../../assets/homemTreinando.webp')}/>
-            <Post image={require('../../assets/moca.jpg')}/>
+            <FlatList
+                data={posts}
+                renderItem={({item}) => <Post image={require('../../assets/mulherTreinando.webp')} content={item.content}/>}
+                keyExtractor={item => item.idPost.toString()}
+            />
+            
         </ScrollView>
     </SafeAreaView>
     )
