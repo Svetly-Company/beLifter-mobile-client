@@ -3,10 +3,13 @@ import { Barbell, Globe, House, User } from "phosphor-react-native";
 import { StatusBar } from "expo-status-bar";
 import { AccessibilityState, GestureResponderEvent, Text, TouchableOpacity, StyleSheet } from "react-native";
 import {BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
+import { QueryClientProvider, QueryClient } from "react-query";
 
+
+const queryClient = new QueryClient()
 export default function TabLayout(){
   return(
-    <>
+    <QueryClientProvider client={queryClient}> 
     <StatusBar backgroundColor={'#111112'} style="light" translucent/>
     <Tabs screenOptions={({navigation, route}) => ({
       headerShown: false,
@@ -71,7 +74,7 @@ export default function TabLayout(){
         }
       }} />
     </Tabs>
-    </>
+    </QueryClientProvider>
   )
 }
 

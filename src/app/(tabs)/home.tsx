@@ -6,20 +6,23 @@ import { Link, router, useNavigation } from 'expo-router';
 import { getUserData } from "../../storage/userData/getUserData";
 import { useEffect, useState } from "react";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import { userStorage } from "../../storage/zustand/store";
 
 export default function Home(){
 
-  const [user, setUser] = useState()
+  // const [user, setUser] = useState()
 
-  useEffect(()=>{
-    loadUserData()
-  }, [user])
 
-  async function loadUserData(){
-    const userData = await getUserData()
+  const user = userStorage((state) => state.user)
+  // useEffect(()=>{
+  //   loadUserData()
+  // }, [user])
 
-    setUser(userData)
-  }
+  // async function loadUserData(){
+  //   const userData = await getUserData()
+
+  //   setUser(userData)
+  // }
   const pan = Gesture.Pan().runOnJS(true).onEnd((e) => {
     if(e.translationX > 0){
       router.navigate("../post")

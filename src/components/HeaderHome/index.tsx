@@ -8,7 +8,7 @@ interface userProps{
   email: string,
   exp: number,
   iat: number,
-
+  token: string
 }
 
 interface HeaderHomeParams{

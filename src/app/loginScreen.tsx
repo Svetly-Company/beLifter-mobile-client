@@ -6,7 +6,7 @@ import { Link, router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import { setUserData } from '../storage/userData/setUserData';
-
+import { userStorage } from '../storage/zustand/store';
 
 
 export default function LoginScreen( ) {
@@ -15,7 +15,7 @@ export default function LoginScreen( ) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState<string>('');
     const [accessToken, setAccessToken] = useState<string>('')
-
+    const {setUser} = userStorage()
     function handleSetEmail(text: string){
         setEmail(text);
     }
@@ -81,6 +81,7 @@ export default function LoginScreen( ) {
         
         setUserData(userData)
         
+        setUser(JSON.parse(userData))
     }
   return (
     <View style={styles.Main}>

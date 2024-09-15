@@ -6,7 +6,8 @@ import { useState, useEffect } from "react";
 import { getUserData } from "../../storage/userData/getUserData";
 import axios from "axios";
 import { ScrollView } from "react-native-virtualized-view";
-
+import { useQuery } from "react-query";
+import { userStorage } from "../../storage/zustand/store";
 
 export default function Comunidade(){
     interface userModel{
@@ -15,52 +16,67 @@ export default function Comunidade(){
     interface PostObject 
     {author: Object, comments: [], content: string, idPost: number, likes: number, media: string}
     
-    const [user, setUser] = useState<userModel>()
+    const user = userStorage((state) => state.user)
 
     const [posts, setPosts] = useState<PostObject[]>([])
 
+    console.log(user)
+    const {data : userPost} = useQuery('posts/all', async()=> {
+        return await axios.get('https://belifter-server.onrender.com/posts/all',
+            {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
+    })
 
-    useEffect(()=>{
+    
+    useEffect(()=> {
         
-        const fetch = async () => {
-            if(user) {
-                loadPosts()
-                return;
-            } 
-            loadUserData() 
+        setPosts(userPost?.data)
+    })
+
+    // useEffect(()=>{
+        
+    //     const fetch = async () => {
+    //         if(user) {
+    //             loadPosts()
+    //             return;
+    //         } 
+    //         loadUserData() 
             
-        }
-        fetch()
+    //     }
+    //     fetch()
 
-        console.log(posts)
-    }, [])
+    //     console.log(posts)
+    // }, [])
 
-    async function loadUserData(){
-        const userData = await getUserData()
-        setUser(userData)
-        loadPosts()
-        console.log(userData)
+    // async function loadUserData(){
+    //     const userData = await getUserData()
+    //     setUser(userData)
+    //     loadPosts()
+    //     console.log(userData)
         
-    }
+    // }
 
-    async function loadPosts(){
-        try{
-            if(user){
-                const values = await axios.get('https://belifter-server.onrender.com/posts/all',
-                    {
-                        headers: {
-                            'Authorization': `Bearer ${user.token}`
-                        }
-                    })
+    // async function loadPosts(){
+    //     try{
+    //         if(user){
+    //             const values = await axios.get('https://belifter-server.onrender.com/posts/all',
+    //                 {
+    //                     headers: {
+    //                         'Authorization': `Bearer ${user.token}`
+    //                     }
+    //                 })
         
-                    setPosts(values.data)
-                    console.log(values.data)
-            }
+    //                 setPosts(values.data)
+    //                 console.log(values.data)
+    //         }
             
-        }catch(Err){
-            console.error(Err + 'Post')
-        }
-    }
+    //     }catch(Err){
+    //         console.error(Err + 'Post')
+    //     }
+    // }
     
 
 
