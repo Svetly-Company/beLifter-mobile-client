@@ -9,11 +9,13 @@ import { Comments } from '../Comments';
 interface PostImageProps {
     image: ImageSourcePropType,
     content: string,
+    id: number,
+    comments: []
 }
 
 const transparent = 'rgba{0,0,0,0.5)'
 
-export function Post({image, content}:PostImageProps,){
+export function Post({image, content, id, comments}:PostImageProps){
     let [status, setStatus] = useState(false);
     function toggleStatus(){
       setStatus(!status)
@@ -31,13 +33,13 @@ export function Post({image, content}:PostImageProps,){
                     onSwipeDown={() => setOpenModal(false)}
                 >
                     <Modal 
-                        visible={openModal} 
+                        visible={openModal}
                         animationType="slide" 
                         transparent={true} 
                     >
                         <View className="flex-1 justify-end items-center" style={{backgroundColor: 'transparent'}}>
                             <View className="bg-neutral-900 p-15 w-full h-5/6 rounded-t-3xl">
-                                <Comments></Comments>
+                                <Comments idPost={id} comments={comments}></Comments>
                             </View>
                         </View>
                     </Modal>

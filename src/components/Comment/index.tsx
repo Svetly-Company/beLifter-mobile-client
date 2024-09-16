@@ -2,7 +2,12 @@ import { View, Text, Image } from 'react-native';
 import { HeartStraight } from "phosphor-react-native";
 
 
-export function Comment(){
+
+interface CommentProps{
+    comment: string,
+}
+
+export function Comment({comment}:CommentProps){
     return(
         <View>
 
@@ -22,7 +27,7 @@ export function Comment(){
                                 <Text className="text-slate-300 text-base mt-0.5 ml-7 font-ibmRegular">Há 5 Horas</Text>
                             </View>
                              
-                            <Text className='text-white font-ibmRegular ml-2 text-lg'>Nossa irmao ta monstro!!! ta pernudo.</Text>
+                            <Text className='text-white font-ibmRegular ml-2 text-lg'>{comment}</Text>
                     </View>
 
                 </View>
@@ -31,9 +36,6 @@ export function Comment(){
                     <HeartStraight size={23} color="white" weight="regular"/>
                 </View>
             </View>
-
-           
-            
         </View>
     )
 }

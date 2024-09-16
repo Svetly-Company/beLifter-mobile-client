@@ -32,8 +32,11 @@ export default function Comunidade(){
 
     
     useEffect(()=> {
+        if(userPost){
+            setPosts(userPost.data)
+            
+        }
         
-        setPosts(userPost?.data)
     })
 
     // useEffect(()=>{
@@ -80,7 +83,7 @@ export default function Comunidade(){
     
 
 
-
+   
     return(
     <SafeAreaView style={{flex: 1}}>
         <ScrollView className="bg-gray-950 flex-1">
@@ -111,7 +114,7 @@ export default function Comunidade(){
             </View>
             <FlatList
                 data={posts}
-                renderItem={({item}) => <Post image={require('../../assets/mulherTreinando.webp')} content={item.content}/>}
+                renderItem={({item}) => <Post image={require('../../assets/mulherTreinando.webp')} content={item.content} id={item.idPost} comments={item.comments} />}
                 keyExtractor={item => item.idPost.toString()}
             />
             
