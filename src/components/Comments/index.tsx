@@ -7,6 +7,7 @@ import { userStorage } from '../../storage/zustand/store';
 import axios from 'axios';
 import { useState } from 'react';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
+import { ScrollView } from 'react-native-virtualized-view';
 
 type CommentProps = {
     authorId: number,
@@ -50,7 +51,7 @@ export function Comments({idPost, comments,  refetch}:CommentsProp){
     async function handleSubmitComment(){
         try{
             // console.log(user.token, idPost, commentContent)
-            const comment = await axios.post(`https://belifter-server.onrender.com/posts/${idPost}/comments/create`, {
+            const {data} = await axios.post(`https://belifter-server.onrender.com/posts/${idPost}/comments/create`, {
                 content: commentContent},
                 {
                 headers: {
@@ -59,7 +60,7 @@ export function Comments({idPost, comments,  refetch}:CommentsProp){
                 
             })
             refetch()
-            console.log('sucesso')
+            console.log(data)
         }catch(e){
             console.error(e)
         }
@@ -71,20 +72,23 @@ export function Comments({idPost, comments,  refetch}:CommentsProp){
 
     return(
         <View className='flex h-3/4'>
-            <View className='overflow-y-auto h-98'>
+            <View className='overflow-y-auto flex-1'>
 
-            <View className="items-center mt-3">
-                <View className='h-1.5 bg-slate-100 w-32 rounded-3xl'></View>
+                <View className="items-center mt-3">
+                    <View className='h-1.5 bg-slate-100 w-32 rounded-3xl'></View>
 
-                <Text className='text-white text-xl mt-2 font-ibmRegular'>Comentários</Text>
-            </View>
+                    <Text className='text-white text-xl mt-2 font-ibmRegular'>Comentários</Text>
+                </View>
 
-
-            <FlatList
-                data={comments}
-                renderItem={({item}) => <Comment comment={item.content}/>}
-                keyExtractor={(item, key) => `${item}-${key}`}
-            />
+                <ScrollView>
+                    <FlatList
+                        
+                        data={comments}
+                        renderItem={({item}) => <Comment comment={item.content} author={item.authorName}/>}
+                        keyExtractor={(item, key) => `${item}-${key}`}
+                    />
+                </ScrollView>
+                
 
             {/* {
                 comments.map((item) => <Comment comment={item.content}></Comment>)

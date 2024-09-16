@@ -9,7 +9,7 @@ import { useQuery } from "react-query";
 import { userStorage } from "../../storage/zustand/store";
 
 interface authorObject {
-    authorName: string
+    name: string
 }
 
 export default function Comunidade(){
@@ -114,7 +114,7 @@ export default function Comunidade(){
             </View>
             <FlatList
                 data={posts}
-                renderItem={({item}) => <Post image={require('../../assets/mulherTreinando.webp')} content={item.content} id={item.idPost} comments={item.comments} author={item.author.authorName} refetch={refetch}  />}
+                renderItem={({item}) => <Post image={require('../../assets/mulherTreinando.webp')} content={item.content} id={item.idPost} comments={item.comments} author={item.author.name} refetch={refetch}  />}
                 keyExtractor={item => item.idPost.toString()}
             />
             

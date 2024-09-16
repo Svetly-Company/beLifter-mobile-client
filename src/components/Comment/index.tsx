@@ -5,9 +5,10 @@ import { HeartStraight } from "phosphor-react-native";
 
 interface CommentProps{
     comment: string,
+    author: string
 }
 
-export function Comment({comment}:CommentProps){
+export function Comment({comment, author}:CommentProps){
     return(
         <View>
 
@@ -23,7 +24,7 @@ export function Comment({comment}:CommentProps){
 
                     <View className='flex ml-2 mt-4 h-min'>
                             <View className='flex flex-row'>
-                                <Text className="text-white font-ibmMedium ml-2 text-lg">Josivaldo Pereira</Text>
+                                <Text className="text-white font-ibmMedium ml-2 text-lg">{author}</Text>
                                 <Text className="text-slate-300 text-base mt-0.5 ml-7 font-ibmRegular">Há 5 Horas</Text>
                             </View>
                              
