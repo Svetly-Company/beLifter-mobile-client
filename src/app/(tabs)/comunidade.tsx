@@ -1,27 +1,23 @@
-import { Text, View, TouchableHighlight, Image, TextInput, TouchableOpacity, ImageBackground, FlatList } from "react-native";
-import { ArrowCircleRight, Bell, CaretCircleRight, CaretDown, CaretUp, DotsThree, MagnifyingGlass, PaperPlaneRight, PaperPlaneTilt, Timer } from "phosphor-react-native";
+import { Text, View, Image, TextInput, TouchableOpacity, FlatList } from "react-native";
+import { Bell, MagnifyingGlass, PaperPlaneTilt } from "phosphor-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Post } from "../../components/Post";
 import { useState, useEffect } from "react";
-import { getUserData } from "../../storage/userData/getUserData";
 import axios from "axios";
 import { ScrollView } from "react-native-virtualized-view";
 import { useQuery } from "react-query";
 import { userStorage } from "../../storage/zustand/store";
 
 export default function Comunidade(){
-    interface userModel{
-        token: string
-    }
+  
     interface PostObject 
     {author: Object, comments: [], content: string, idPost: number, likes: number, media: string}
-    
+   
     const user = userStorage((state) => state.user)
 
     const [posts, setPosts] = useState<PostObject[]>([])
-
-    console.log(user)
-    const {data : userPost} = useQuery('posts/all', async()=> {
+  
+    const {data : userPost, refetch} = useQuery('posts/all', async()=> {
         return await axios.get('https://belifter-server.onrender.com/posts/all',
             {
                 headers: {
@@ -88,7 +84,7 @@ export default function Comunidade(){
     <SafeAreaView style={{flex: 1}}>
         <ScrollView className="bg-gray-950 flex-1">
             <View className="p-7 flex-row justify-between items-center">
-            <Image source={require('../../assets/BeLifter.jpg')} className="h-14 w-32" />
+            <Image source={require('../../assets/BeLifter.jpg')} className="h-14 w-32"/>
                 <View className="flex flex-row gap-3">
                     <TouchableOpacity>
                         <Bell color="white" weight="bold" size={28}/>
@@ -114,7 +110,7 @@ export default function Comunidade(){
             </View>
             <FlatList
                 data={posts}
-                renderItem={({item}) => <Post image={require('../../assets/mulherTreinando.webp')} content={item.content} id={item.idPost} comments={item.comments} />}
+                renderItem={({item}) => <Post image={require('../../assets/mulherTreinando.webp')} content={item.content} id={item.idPost} comments={item.comments} refetch={refetch}  />}
                 keyExtractor={item => item.idPost.toString()}
             />
             

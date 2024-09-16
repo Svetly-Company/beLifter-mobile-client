@@ -101,6 +101,7 @@ export default function LoginScreen( ) {
                 style={styles.input} 
                 placeholder='Senha' 
                 placeholderTextColor={'#A5A5A5'}
+                secureTextEntry
                 onChangeText={handleSetPassword}
                 value={password}
                 

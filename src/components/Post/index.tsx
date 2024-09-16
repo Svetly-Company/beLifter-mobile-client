@@ -10,13 +10,15 @@ interface PostImageProps {
     image: ImageSourcePropType,
     content: string,
     id: number,
-    comments: []
+    comments: [],
+    refetch: any
 }
 
 const transparent = 'rgba{0,0,0,0.5)'
 
-export function Post({image, content, id, comments}:PostImageProps){
+export function Post({image, content, id, comments, refetch}:PostImageProps){
     let [status, setStatus] = useState(false);
+
     function toggleStatus(){
       setStatus(!status)
     }
@@ -39,7 +41,7 @@ export function Post({image, content, id, comments}:PostImageProps){
                     >
                         <View className="flex-1 justify-end items-center" style={{backgroundColor: 'transparent'}}>
                             <View className="bg-neutral-900 p-15 w-full h-5/6 rounded-t-3xl">
-                                <Comments idPost={id} comments={comments}></Comments>
+                                <Comments idPost={id} comments={comments} refetch={refetch}></Comments>
                             </View>
                         </View>
                     </Modal>

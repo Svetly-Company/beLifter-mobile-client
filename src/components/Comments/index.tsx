@@ -6,27 +6,50 @@ import { FlatList } from 'react-native';
 import { userStorage } from '../../storage/zustand/store';
 import axios from 'axios';
 import { useState } from 'react';
+import { useMutation, useQueryClient, useQuery } from 'react-query';
 
 type CommentProps = {
     authorId: number,
     authorName: string,
     content: string,
-    profilePicture: string
+    profilePicture: string,
+    
 }
 
 interface CommentsProp{
     idPost: number,
     comments: CommentProps[]
+    refetch : any
 }
 
+// interface postComment {
+//     id: number,
+//     commentContent: string
+// }
 
-export function Comments({idPost, comments}:CommentsProp){
+// interface PostObject 
+// {author: Object, comments: [], content: string, idPost: number, likes: number, media: string}
+
+export function Comments({idPost, comments,  refetch}:CommentsProp){
     const [commentContent, setCommentContent] = useState('')
     const user = userStorage((state) => state.user)
 
+
+    // const {data : userPost} = useQuery('comment/all', async()=> {
+    //     return await axios.post(`https://belifter-server.onrender.com/posts/${idPost}/comments/create`,{
+    //         content: commentContent
+    //     },
+    //         {
+    //             headers: {
+    //                 'Authorization': `Bearer ${user.token}`
+    //             }
+    //         })
+    // })
+
+
     async function handleSubmitComment(){
         try{
-            console.log(user.token, idPost, commentContent)
+            // console.log(user.token, idPost, commentContent)
             const comment = await axios.post(`https://belifter-server.onrender.com/posts/${idPost}/comments/create`, {
                 content: commentContent},
                 {
@@ -35,6 +58,8 @@ export function Comments({idPost, comments}:CommentsProp){
                 }
                 
             })
+            refetch()
+            console.log('sucesso')
         }catch(e){
             console.error(e)
         }
@@ -58,7 +83,7 @@ export function Comments({idPost, comments}:CommentsProp){
             <FlatList
                 data={comments}
                 renderItem={({item}) => <Comment comment={item.content}/>}
-                keyExtractor={item => item.authorId.toString()}
+                keyExtractor={(item, key) => `${item}-${key}`}
             />
 
             {/* {
@@ -74,7 +99,7 @@ export function Comments({idPost, comments}:CommentsProp){
                 <Subcomment></Subcomment> */}
             </View>
 
-            <View className='h-1/4 mt-64 position: sticky bg-gray-800 flex flex-row content-between w-full'>
+            <View className='h-1/4 position: sticky bg-gray-800 flex flex-row content-between w-full'>
                 <View className='ml-4 mt-12'>
                     <Image source={require('../../assets/moca.jpg')} className="w-12 h-12 rounded-full" />
                     

@@ -1,15 +1,13 @@
 import { Link, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useState, useEffect } from "react";
-import { Image, Text, TextInput, TouchableOpacity, View, Modal, Button } from "react-native";
-import { GestureDetector, State, HandlerStateChangeEvent, GestureEvent, Gesture } from "react-native-gesture-handler";
+import { Image, Text, TextInput, TouchableOpacity, View, Modal } from "react-native";
+import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import { Barbell, CaretRight, Timer, Upload } from "phosphor-react-native";
 import { getUserData } from "../storage/userData/getUserData";
 import * as ImagePicker from 'expo-image-picker'
-
-import Animated from "react-native-reanimated";
 import axios from "axios";
-import { err } from "react-native-svg";
+
 export default function PostForm() {
 
 

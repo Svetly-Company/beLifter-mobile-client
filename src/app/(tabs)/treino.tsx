@@ -5,17 +5,19 @@ import HeaderHome  from "../../components/HeaderHome";
 import { Frequency } from "../../components/Frequency";
 import { Workouts } from "../../components/Workouts";
 import { useState } from "react";
+import { userStorage } from "../../storage/zustand/store";
 
 
 export default function Treino(){
     let [status, setStatus] = useState(false);
+    const user = userStorage((state) => state.user)
     function toggleStatus(){
       setStatus(!status)
     }
     return(
         <SafeAreaView style={{flex: 1}}>
           <ScrollView className="bg-gray-950 flex-1">
-          <HeaderHome />
+          <HeaderHome user={user}/>
           <Frequency />
           <View className="flex gap-2 flex-col mt-8">
             <Text className=" px-8 lex-1 font-ibmRegular text-white text-x">Fichas de Treino</Text>
