@@ -11,12 +11,13 @@ interface PostImageProps {
     content: string,
     id: number,
     comments: [],
-    refetch: any
+    refetch: any,
+    author: string
 }
 
 const transparent = 'rgba{0,0,0,0.5)'
 
-export function Post({image, content, id, comments, refetch}:PostImageProps){
+export function Post({image, content, id, comments, refetch, author}:PostImageProps){
     let [status, setStatus] = useState(false);
 
     function toggleStatus(){
@@ -58,7 +59,7 @@ export function Post({image, content, id, comments, refetch}:PostImageProps){
             <View className="flex flex-row gap-3 items-center">
                 <Image source={require('../../assets/moca.jpg')} className="w-12 h-12 rounded-full" />
                 <View>
-                    <Text className="text-white text-base font-ibmRegular">Josivaldo Pereira</Text>
+                    <Text className="text-white text-base font-ibmRegular">{author}</Text>
                     <View className="flex flex-row justify-between mt-2 items-center">
                         <Text className="text-gray-1050 text-xs font-ibmMedium">Há 5 Horas</Text>
                         <TouchableOpacity>

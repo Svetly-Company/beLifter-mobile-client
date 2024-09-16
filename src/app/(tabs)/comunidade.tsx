@@ -8,10 +8,14 @@ import { ScrollView } from "react-native-virtualized-view";
 import { useQuery } from "react-query";
 import { userStorage } from "../../storage/zustand/store";
 
+interface authorObject {
+    authorName: string
+}
+
 export default function Comunidade(){
   
     interface PostObject 
-    {author: Object, comments: [], content: string, idPost: number, likes: number, media: string}
+    {author: authorObject, comments: [], content: string, idPost: number, likes: number, media: string}
    
     const user = userStorage((state) => state.user)
 
@@ -110,7 +114,7 @@ export default function Comunidade(){
             </View>
             <FlatList
                 data={posts}
-                renderItem={({item}) => <Post image={require('../../assets/mulherTreinando.webp')} content={item.content} id={item.idPost} comments={item.comments} refetch={refetch}  />}
+                renderItem={({item}) => <Post image={require('../../assets/mulherTreinando.webp')} content={item.content} id={item.idPost} comments={item.comments} author={item.author.authorName} refetch={refetch}  />}
                 keyExtractor={item => item.idPost.toString()}
             />
             
