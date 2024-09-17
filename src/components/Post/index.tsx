@@ -54,14 +54,14 @@ export function Post({image, content, id, comments, refetch, author}:PostImagePr
     }
 
     return(
-    <View className="mt-8 mx-2 p-6 flex flex-col bg-black-100 rounded-3xl">
+    <View className="mt-8 mx-2 p-6 flex flex-col bg-[#151415] rounded-3xl">
         <View className="flex-row justify-between items-center">
             <View className="flex flex-row gap-3 items-center">
                 <Image source={require('../../assets/moca.jpg')} className="w-12 h-12 rounded-full" />
                 <View>
                     <Text className="text-white text-base font-ibmRegular">{author}</Text>
                     <View className="flex flex-row justify-between mt-2 items-center">
-                        <Text className="text-gray-1050 text-xs font-ibmMedium">Há 5 Horas</Text>
+                        <Text className="text-white text-xs font-ibmMedium mr-1">Há 5 Horas</Text>
                         <TouchableOpacity>
                             <Text className="text-gray-300  text-xs font-ibmMedium">Seguir</Text>
                         </TouchableOpacity>
@@ -73,11 +73,11 @@ export function Post({image, content, id, comments, refetch, author}:PostImagePr
             </TouchableOpacity>
         </View>
         <View className="flex flex-col justify-center items-center mt-4">
-            <Text className="text-white text-base font-ibmRegular">{content}</Text>
+            <Text className="text-white text-lg font-ibmRegular w-full">{content}</Text>
             <View className="w-full h-72 mt-6">
                 <ImageBackground className="flex-1 justify-end" 
                 source={image} resizeMode="cover" imageStyle={{borderRadius: 30}}>
-                    <View className="flex flex-row justify-between bg-gray-1000/45 mx-2 my-1 px-6 py-2 rounded-full">
+                    <View className="flex flex-row justify-between bg-[#3E3E3E]/50 mx-2 my-1 px-6 py-2 rounded-full items-center">
                         <View className="flex flex-row gap-1">
                             <Timer color="white" size={34}/>
                             <View className="flex flex-col justify-center items-center">
