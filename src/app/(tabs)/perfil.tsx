@@ -7,13 +7,18 @@ import { getUserData } from "../../storage/userData/getUserData";
 import { useEffect, useState } from "react";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { CaretLeft, UploadSimple, DotsThree, CaretDown, Fire, Footprints, Gauge, CalendarBlank } from "phosphor-react-native";
-
+import { userStorage } from "../../storage/zustand/store";
 
 export default function Profile() {
+
+
+  const user = userStorage((state) => state.user)
+
+
   return (
     <View className="flex-1 bg-black">
 
-      <View className="h-2/5 rounded-b-3xl flex w-screen flex-col bg-neutral-900">
+      <View className="flex-1 rounded-b-3xl flex w-screen flex-col bg-neutral-900">
 
         <View className="h-12"></View>
 
@@ -25,7 +30,7 @@ export default function Profile() {
 
           <View className="flex flex-row gap-8">
             <View className="w-3/6">
-              <Text className="font-ibmMedium text-xl mt-2 text-white">NomeDeUsuario</Text>
+              <Text className="font-ibmMedium text-xl mt-2 text-white">{user.name}</Text>
             </View>
 
             <View className="w-2/6 flex-row gap-3 mt-2">
@@ -116,7 +121,7 @@ export default function Profile() {
       </View>
 
 
-      <ScrollView className=" bg-black flex flex-1 ">
+      <ScrollView className=" bg-black flex flex-1">
 
         
 
@@ -249,10 +254,6 @@ export default function Profile() {
 
           </View>
         
-
-
-
-
       </ScrollView>
 
     </View>
