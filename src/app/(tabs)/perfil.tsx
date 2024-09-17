@@ -6,14 +6,14 @@ import { Link, router, useNavigation } from 'expo-router';
 import { getUserData } from "../../storage/userData/getUserData";
 import { useEffect, useState } from "react";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import { CaretLeft, UploadSimple, DotsThree, CaretDown, Fire, Footprints, Gauge, CalendarBlank } from "phosphor-react-native";
-
+import { CaretLeft, UploadSimple, DotsThree, CaretDown, Fire, Footprints, Gauge, CalendarBlank, TrendUp, Barbell , PersonSimple} from "phosphor-react-native";
+import { Post } from "../../components/Post";
 
 export default function Profile() {
   return (
     <View className="flex-1 bg-black">
 
-      <View className="h-2/5 rounded-b-3xl flex w-screen flex-col bg-neutral-900">
+      <View className=" flex-1 rounded-b-3xl flex w-screen flex-col bg-neutral-900">
 
         <View className="h-12"></View>
 
@@ -116,7 +116,7 @@ export default function Profile() {
       </View>
 
 
-      <ScrollView className=" bg-black flex flex-1 ">
+      <ScrollView className=" bg-black flex flex-1">
 
         
 
@@ -206,13 +206,17 @@ export default function Profile() {
 
                 <View className="flex flex-row gap-5">
 
-                  <View className="bg-neutral-900 w-5/12 h-14 items-center rounded-2xl ">
+                  <View className="bg-neutral-900 w-5/12 h-14 gap-2 flex-row items-center justify-center rounded-2xl ">
+
+                    <TrendUp size={20} color="#00BF63" />
 
                     <Text className="font-ibmRegular text-base text-white py-4">Estatísticas</Text>
 
                   </View>
 
-                  <View className="bg-neutral-900 w-5/12 h-14 items-center rounded-2xl ">
+                  <View className="bg-neutral-900 w-5/12 h-14 items-center gap-2 justify-center flex-row rounded-2xl ">
+
+                    <Barbell size={20} color="#00BF63" />
 
                     <Text className="font-ibmRegular text-base text-white py-4">Exercícios</Text>
 
@@ -222,13 +226,17 @@ export default function Profile() {
 
                 <View className="flex flex-row gap-5">
 
-                  <View className="bg-neutral-900 w-5/12 h-14 items-center rounded-2xl ">
+                  <View className="bg-neutral-900 w-5/12 h-14 items-center flex-row gap-2 justify-center  rounded-2xl ">
+
+                    <PersonSimple size={20} color="#00BF63" />
 
                     <Text className="font-ibmRegular text-base text-white py-4">Medições</Text>
 
                   </View>
 
-                  <View className="bg-neutral-900 w-5/12 h-14 items-center rounded-2xl ">
+                  <View className="bg-neutral-900 w-5/12 h-14 flex-row items-center gap-2 justify-center  rounded-2xl ">
+
+                    <CalendarBlank size={20} color="#00BF63" />
 
                     <Text className="font-ibmRegular text-base text-white py-4">Calendários</Text>
 
@@ -236,19 +244,18 @@ export default function Profile() {
 
                 </View>
 
-                
-
               </View>
 
             </View>
-
+            
+            
 
           </View>
 
+          
           <View>
-
+              <Post author="rand" comments={[]} id={0} content="texto" image={require('../../assets/mulherTreinando.webp')} />
           </View>
-        
 
 
 

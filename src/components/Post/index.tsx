@@ -11,7 +11,7 @@ interface PostImageProps {
     content: string,
     id: number,
     comments: [],
-    refetch: any,
+    refetch?: any,
     author: string
 }
 
