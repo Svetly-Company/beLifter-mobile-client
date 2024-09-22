@@ -7,7 +7,7 @@ import { Barbell, CaretRight, Timer, Upload } from "phosphor-react-native";
 import { getUserData } from "../storage/userData/getUserData";
 import * as ImagePicker from 'expo-image-picker'
 import axios from "axios";
-
+import * as FileSystem from 'expo-file-system'
 export default function PostForm() {
 
 
@@ -25,6 +25,8 @@ export default function PostForm() {
     setUser(userData)
   }
 
+
+  const imgDir = FileSystem.documentDirectory + 'images/';
 
   const [changeEvent, setChangeEvent] = useState<boolean>(false)
   const [hours, setHours] = useState('')
@@ -71,12 +73,19 @@ export default function PostForm() {
 
   async function handleSubmitPost(){
     try{
-      console.log(user.token)
-      console.log(description)
+      // console.log(user.token)
+      // console.log(description)
+      // console.log(image)
+
+      let formData = new FormData()
+      console.log(image)
+      const mediaUrl = await uploadImage(image)
+
+
       const userPost = await axios
         .post('https://belifter-server.onrender.com/posts/create', {
           content: `${description}`,
-          mediaUrl: '',
+          mediaUrl: `${mediaUrl}`,
         }, {
           headers: {
             'Authorization': `Bearer ${user.token}`
@@ -97,11 +106,53 @@ export default function PostForm() {
           }
         });
 
-    console.log(userPost)
+    // console.log(userPost)
     router.navigate('/comunidade')
     }catch(err){
       throw err
     }
+  }
+
+  async function uploadImage(uri : string){
+    try{
+    //   const media = await axios
+    //   .post('https://belifter-server.onrender.com/upload/send',
+    //     formData,{
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //       'Content-Length': '0'
+    //     }
+    //   }
+
+    // ).then((res) => {
+    //   if (res.data.status) {
+    //     throw new Error(String(res.data.message));
+    //   }
+
+    //   console.log(JSON.stringify(res.data))
+    // })
+    // .catch((err) => {
+    //   console.log(err)
+    // })
+
+    // const saveImage = async (uri : string) => {
+    //   const name = image.split('/')
+    //   const filename = name[name.length-1]
+    //   const dest = imgDir+filename
+    //   await FileSystem.copyAsync({from: image, to: dest})
+    // }
+    const mediaUlr = await FileSystem.uploadAsync('https://belifter-server.onrender.com/upload/send', image, {
+      httpMethod: 'POST',
+      uploadType: FileSystem.FileSystemUploadType.MULTIPART,
+      fieldName: 'file'
+    })
+    
+    return mediaUlr.body
+
+    }catch(err){
+      throw err
+    }
+    
   }
 
 

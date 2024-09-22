@@ -1,6 +1,7 @@
-import { Text, View, Image, TouchableOpacity, ImageSourcePropType, ImageBackground, Modal } from "react-native";
+import { Text, View, Image, TouchableOpacity, ImageSourcePropType, Modal } from "react-native";
 import { CaretCircleRight, ChatCircle, DotsThree, HeartStraight, Timer } from "phosphor-react-native";
 import { useState } from "react";
+import { ImageBackground } from "expo-image";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import React from 'react';
 import GestureRecognizer from 'react-native-swipe-gestures';
@@ -75,8 +76,8 @@ export function Post({image, content, id, comments, refetch, author}:PostImagePr
         <View className="flex flex-col justify-center items-center mt-4">
             <Text className="text-white text-lg font-ibmRegular w-full">{content}</Text>
             <View className="w-full h-72 mt-6">
-                <ImageBackground className="flex-1 justify-end" 
-                source={image} resizeMode="cover" imageStyle={{borderRadius: 30}}>
+                <ImageBackground
+                source={image} contentFit="cover" imageStyle={{borderRadius: 30}} style={{borderRadius: 30, flex: 1, justifyContent: "flex-end"}}>
                     <View className="flex flex-row justify-between bg-[#3E3E3E]/50 mx-2 my-1 px-6 py-2 rounded-full items-center">
                         <View className="flex flex-row gap-1">
                             <Timer color="white" size={34}/>

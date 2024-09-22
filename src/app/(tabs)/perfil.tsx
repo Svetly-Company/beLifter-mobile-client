@@ -16,6 +16,7 @@ export default function Profile() {
 
   const user = userStorage((state) => state.user)
 
+  console.log(user.token)
 
   return (
     <View className="flex-1 bg-black">

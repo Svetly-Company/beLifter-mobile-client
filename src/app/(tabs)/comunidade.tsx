@@ -7,6 +7,7 @@ import axios from "axios";
 import { ScrollView } from "react-native-virtualized-view";
 import { useQuery } from "react-query";
 import { userStorage } from "../../storage/zustand/store";
+import { ImageSourcePropType } from "react-native";
 
 interface authorObject {
     name: string
@@ -15,7 +16,7 @@ interface authorObject {
 export default function Comunidade(){
   
     interface PostObject 
-    {author: authorObject, comments: [], content: string, idPost: number, likes: number, media: string}
+    {author: authorObject, comments: [], content: string, idPost: number, likes: number, media: ImageSourcePropType}
    
     const user = userStorage((state) => state.user)
 
@@ -31,10 +32,10 @@ export default function Comunidade(){
     })
 
     
+    
     useEffect(()=> {
         if(userPost){
             setPosts(userPost.data)
-            
         }
         
     })
@@ -114,7 +115,7 @@ export default function Comunidade(){
             </View>
             <FlatList
                 data={posts}
-                renderItem={({item}) => <Post image={require('../../assets/mulherTreinando.webp')} content={item.content} id={item.idPost} comments={item.comments} author={item.author.name} refetch={refetch}  />}
+                renderItem={({item}) => <Post image={item.media} content={item.content} id={item.idPost} comments={item.comments} author={item.author.name} refetch={refetch}  />}
                 keyExtractor={item => item.idPost.toString()}
             />
             
