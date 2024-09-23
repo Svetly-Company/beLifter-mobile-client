@@ -156,13 +156,14 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 40,
-        width: 310,
+        width: 330,
         backgroundColor: '#151415',
         borderRadius: 15,
         marginTop: 30,
         color: '#fff',
         textAlign: 'left',
-        padding: 6
+        padding: 6,
+        paddingLeft: 12
     },
     whiteLine: {
         backgroundColor: 'white',

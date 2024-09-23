@@ -13,7 +13,7 @@ export function BoxModel( {title, desc, bgColor=false} : boxModelParams) {
     return(
         <View className={"flex-wrap " + (!bgColor ? 'bg-neutral-900' : 'bg-neutral-950') + " mt-4 py-6 px-6 rounded-3xl gap-2"}>
             <View className="flex-row justify-between items-center">
-              <View className="bg-gray-100 p-2 rounded-xl mr-2">
+              <View className="bg-gray-100 p-2 rounded-2xl mr-2">
                 {
                     !bgColor ? <ChatCenteredDots color="black" size={32}/> : <ChatCircleText color="black" size={32}/>
                 }

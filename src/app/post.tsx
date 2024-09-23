@@ -30,7 +30,7 @@ export default function PostForm() {
 
   const [changeEvent, setChangeEvent] = useState<boolean>(false)
   const [hours, setHours] = useState('')
-  const [weight, setWeight] = useState('')
+  const [weight, setWeight] = useState('0')
   const [modalVisible, setModalVisible] = useState(false)
   const [description, setDescription] = useState('')
   const [image, setImage] = useState('')

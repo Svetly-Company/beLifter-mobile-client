@@ -74,7 +74,7 @@ export default function RegisterScreen(){
 
 
   return (
-    <View className="flex-1 bg-gray-950 p-4">
+    <View className="flex-1 bg-gray-950 p-5">
       <Text className="font-ibmMedium text-xl text-white pl-6 pt-8 mt-2">Criar uma nova conta</Text>
       <View className="mx-4 mt-8">
         <TextInput className="w-full bg-neutral-900 px-4 mb-11 py-2 rounded-2xl color-gray-200" 

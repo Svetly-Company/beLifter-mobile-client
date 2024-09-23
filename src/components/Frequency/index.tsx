@@ -1,5 +1,5 @@
 import { Text, TouchableOpacity, View } from "react-native";
-import { ArrowCircleRight } from "phosphor-react-native";
+import { ArrowCircleRight, CaretRight } from "phosphor-react-native";
 import { CheckDay } from "../CheckDay";
 import { getWeek } from "../../classes/WeekDays/WeekDays";
 export function Frequency(){
@@ -8,8 +8,11 @@ export function Frequency(){
     <View className="flex gap-2 flex-col mt-8 px-8">
         <View className="flex flex-row">
             <Text className="flex-1 font-ibmRegular text-gray-300">Frequência de Treino</Text>
-            <TouchableOpacity>
-                <ArrowCircleRight color="white" size={15}/>
+            <TouchableOpacity >
+                <View className="p-1 bg-[#3E3E3E] rounded-full">
+                    <CaretRight color="white" size={16}/>
+                </View>
+                
             </TouchableOpacity>
         </View>
         <View className="flex gap-3 mt-2 flex-row justify-center">

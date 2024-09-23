@@ -16,13 +16,14 @@ export default function TabLayout(){
       tabBarLabel: navigation.isFocused() ? route.name : '',
       tabBarStyle: {
         backgroundColor: "#232324",
-        borderTopWidth: 0,
         position: "absolute",
         bottom: 15,
-        left: 14,
-        right: 14,
+        left: 28,
+        right: 28,
         borderRadius: 35,
         height: 65,
+        borderWidth: 0,
+        borderColor: '#000'
         
       },
       tabBarLabelPosition: "beside-icon",
@@ -87,15 +88,15 @@ function TabButton({children, onPress, accessibilityState}: BottomTabBarButtonPr
 
 const styleTabButton = StyleSheet.create( {
   activeButton: {
-    flex:1, 
+    flex: 2,   
     flexDirection: 'row', 
     alignItems: 'center', 
     justifyContent: 'center',
     backgroundColor: '#00592E',
     color: 'white',
     borderRadius: 35,
-    padding: 10,
-    margin: 5
+    padding: 8,
+    margin: 6,
   },
   unActiveButton: {
     flex:1, 
