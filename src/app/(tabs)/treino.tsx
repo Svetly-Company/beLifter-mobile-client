@@ -25,13 +25,13 @@ export default function Treino(){
               <Workouts source={require("../../assets/mulherTreinando.webp")} text="Treino A" description="Peito/Ombro"/>
               <Workouts source={require("../../assets/homemTreinando.webp")} text="Treino B" description="Quadriceps/Posterior"/>
             </ScrollView>
-            <View className="flex gap-2 flex-col mt-8 px-8">
+            <View className="flex gap-2 flex-col mt-8 px-8 pb-24">
               <View className="flex flex-row justify-between">
                 <Text className="text-gray-300 font-ibmMedium">Criada por:</Text>
                 <View className="flex flex-row">
                   <Text className="font-ibmMedium text-gray-300">Ver histórico</Text>
                   <TouchableHighlight onPress={() =>toggleStatus()}>
-                    { status ? <CaretUp color="white" size={19} weight="fill"/> : <CaretDown color="white" size={19} weight="fill"/>}
+                    { status ? <CaretUp color="white" size={18} weight="fill"/> : <CaretDown color="white" size={19} weight="fill"/>}
                   </TouchableHighlight>
                 </View>
               </View>

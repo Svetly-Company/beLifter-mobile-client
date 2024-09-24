@@ -117,6 +117,7 @@ export default function Comunidade(){
                 data={posts}
                 renderItem={({item}) => <Post image={item.media} content={item.content} id={item.idPost} comments={item.comments} author={item.author.name} refetch={refetch}  />}
                 keyExtractor={item => item.idPost.toString()}
+                style={{paddingBottom: 100}}
             />
             
         </ScrollView>

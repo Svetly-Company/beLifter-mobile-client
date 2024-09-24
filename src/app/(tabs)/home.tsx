@@ -35,7 +35,7 @@ export default function Home(){
       <SafeAreaView style={{flex: 1}}>
         <View className="bg-gray-950 flex-1">
           <HeaderHome user={user}/>
-          <View className="mt-8 mx-4 border-b-2 pb-12 border-gray-400">
+          <View className="mt-8 mx-4 border-b-2 border-[#ADADAD11]">
             <BoxModel title="Pendências" desc="Resolva suas pendências"/>
             <BoxModel title="Atendimento" desc="Fale com um de nossos especialistas da academia" bgColor/>
           </View>
