@@ -1,6 +1,6 @@
 import { Image, Text, View, ImageBackground, TouchableOpacity, StyleSheet  } from "react-native";
 import {Bell, CaretRight} from "phosphor-react-native"
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 
 interface userProps{
   id: number,
@@ -11,11 +11,21 @@ interface userProps{
   token: string
 }
 
-interface HeaderHomeParams{
-  user?: userProps | undefined
+interface identify{
+  link: string
 }
 
-export default function HeaderHome({user} : HeaderHomeParams){
+interface HeaderHomeParams{
+  user?: userProps | undefined
+  link?: string
+}
+
+export default function HeaderHome({user, link} : HeaderHomeParams){
+
+  function handleNavigate(){
+    router.navigate(link ? link : '/comunidade')
+  }
+
   return(
     <View className="bg-neutral-900 pb-4" style={styles.borderStyle}>
         <View className="p-6 flex-row justify-around items-center">
@@ -42,10 +52,10 @@ export default function HeaderHome({user} : HeaderHomeParams){
                 <Text className="text-slate-200 font-ibmRegular font-thin drop-shadow-lg">Abdomen, Peito e Biceps</Text>
               </View>     
 
-              <TouchableOpacity> 
-                <Link href={"/comunidade"}>
+              <TouchableOpacity onPress={handleNavigate}> 
+
                   <CaretRight color="white" size={42}/>
-                </Link>
+
               
               </TouchableOpacity>
             </View>

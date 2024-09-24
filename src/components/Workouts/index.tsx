@@ -8,6 +8,7 @@ type TWorkout = {
     description:string
 }
 
+
 export function Workouts({source, text, description}:TWorkout){
     return(
         <View className="w-72 h-72 px-4 border-box">

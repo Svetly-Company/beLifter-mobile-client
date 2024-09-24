@@ -17,7 +17,7 @@ export default function Treino(){
     return(
         <SafeAreaView style={{flex: 1}}>
           <ScrollView className="bg-gray-950 flex-1">
-          <HeaderHome user={user}/>
+          <HeaderHome user={user} link={"../subWorkout"}/>
           <Frequency />
           <View className="flex gap-2 flex-col mt-8">
             <Text className=" px-8 lex-1 font-ibmRegular text-white text-x">Fichas de Treino</Text>
