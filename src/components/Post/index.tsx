@@ -11,7 +11,7 @@ interface PostImageProps {
     image: ImageSourcePropType,
     content: string,
     id: number,
-    comments: [],
+    comments?: [],
     refetch?: any,
     author: string
 }
@@ -43,7 +43,11 @@ export function Post({image, content, id, comments, refetch, author}:PostImagePr
                     >
                         <View className="flex-1 justify-end items-center" style={{backgroundColor: 'transparent'}}>
                             <View className="bg-neutral-900 p-15 w-full h-5/6 rounded-t-3xl">
-                                <Comments idPost={id} comments={comments} refetch={refetch}></Comments>
+                                {
+                                    comments ? <Comments idPost={id} comments={comments} refetch={refetch}></Comments>  : <View> </View>
+
+                                }
+                                
                             </View>
                         </View>
                     </Modal>
