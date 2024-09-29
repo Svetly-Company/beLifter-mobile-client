@@ -1,6 +1,7 @@
-import { ImageBackground, ImageSourcePropType, Text, TouchableOpacity, View} from "react-native";
+import {ImageSourcePropType, Text, TouchableOpacity, View} from "react-native";
 import { ArrowCircleRight } from "phosphor-react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { ImageBackground } from "expo-image";
 
 type TWorkout = {
     source:ImageSourcePropType,
@@ -12,8 +13,8 @@ type TWorkout = {
 export function Workouts({source, text, description}:TWorkout){
     return(
         <View className="w-72 h-72 px-4 border-box">
-            <ImageBackground className="flex-1 "
-            source={source} resizeMode="cover" imageStyle={{borderRadius: 20}}>
+            <ImageBackground style={{flex: 1}}
+            source={source} contentFit="cover" imageStyle={{borderRadius: 20}}>
                 <LinearGradient colors={['transparent', 'black']} start={{x: 0.5, y: 0.2}} className="flex flex-1 justify-end rounded-3xl p-4">
                     <View className="flex flex-row justify-between px-2">
                     <View>

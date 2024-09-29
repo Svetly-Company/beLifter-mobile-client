@@ -1,18 +1,59 @@
-import { Text, View, ScrollView, TouchableHighlight, Image } from "react-native";
+import { Text, View, ScrollView, TouchableHighlight, Image, ImageSourcePropType } from "react-native";
 import { CaretDown, CaretUp } from "phosphor-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HeaderHome  from "../../components/HeaderHome";
 import { Frequency } from "../../components/Frequency";
 import { Workouts } from "../../components/Workouts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { userStorage } from "../../storage/zustand/store";
+import axios from "axios";
+import { useQuery } from "react-query";
+import { FlatList } from "react-native-gesture-handler";
 
+const date = new Date()
+const dayOfWeek = date.getDay()
+
+interface exercisesModel {
+  name: string,
+  description: string,
+  idExercise: number,
+  image: ImageSourcePropType
+}
+
+interface scheduleModel {
+  idWorkout: number,
+  name: string,
+  description: string
+  image: ImageSourcePropType,
+  exercises: exercisesModel[]
+}
 
 export default function Treino(){
     let [status, setStatus] = useState(false);
     const user = userStorage((state) => state.user)
+    const [schedule, setSchedule] = useState<scheduleModel[]>()
+    const [scheduleExercises, setScheduleExercises] = useState<exercisesModel[]>()
+
+
+    const {data : userSchedule, refetch} = useQuery('workouts/all', async()=> {
+      return await axios.get('https://belifter-server.onrender.com/workout',
+          {
+              headers: {
+                  'Authorization': `Bearer ${user.token}`
+              }
+          })
+  })
+
+  useEffect(() => {
+    if(userSchedule){
+      setSchedule(userSchedule.data)
+      setScheduleExercises(userSchedule.data[dayOfWeek].exercises)
+    }
+  }, [])
+
     function toggleStatus(){
       setStatus(!status)
+      console.log(scheduleExercises)
     }
     return(
         <SafeAreaView style={{flex: 1}}>
@@ -21,10 +62,14 @@ export default function Treino(){
           <Frequency />
           <View className="flex gap-2 flex-col mt-8">
             <Text className=" px-8 lex-1 font-ibmRegular text-white text-x">Fichas de Treino</Text>
-            <ScrollView horizontal={true} className="px-3 flex mt-2 flex-row">
+            {
+              schedule ? <FlatList data={scheduleExercises} renderItem={({item}) => <Workouts source={item.image} text={item.name} description={item.description}></Workouts>} keyExtractor={item => item.idExercise.toString()} horizontal/> : <View></View>
+            }
+            
+            {/* <ScrollView horizontal={true} className="px-3 flex mt-2 flex-row">
               <Workouts source={require("../../assets/mulherTreinando.webp")} text="Treino A" description="Peito/Ombro"/>
               <Workouts source={require("../../assets/homemTreinando.webp")} text="Treino B" description="Quadriceps/Posterior"/>
-            </ScrollView>
+            </ScrollView> */}
             <View className="flex gap-2 flex-col mt-8 px-8 pb-24">
               <View className="flex flex-row justify-between">
                 <Text className="text-gray-300 font-ibmMedium">Criada por:</Text>

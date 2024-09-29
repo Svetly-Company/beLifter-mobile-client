@@ -53,10 +53,7 @@ export default function HeaderHome({user, link} : HeaderHomeParams){
               </View>     
 
               <TouchableOpacity onPress={handleNavigate}> 
-
                   <CaretRight color="white" size={42}/>
-
-              
               </TouchableOpacity>
             </View>
 
