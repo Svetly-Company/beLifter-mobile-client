@@ -42,12 +42,12 @@ export default function Treino(){
                   'Authorization': `Bearer ${user.token}`
               }
           })
-  })
+    })
 
   useEffect(() => {
     if(userSchedule){
       setSchedule(userSchedule.data)
-      setScheduleExercises(userSchedule.data[dayOfWeek].exercises)
+      setScheduleExercises(userSchedule.data[0].exercises)
     }
   }, [])
 
@@ -58,7 +58,7 @@ export default function Treino(){
     return(
         <SafeAreaView style={{flex: 1}}>
           <ScrollView className="bg-gray-950 flex-1">
-          <HeaderHome user={user} link={"../subWorkout"}/>
+          <HeaderHome link={"../subWorkout"}/>
           <Frequency />
           <View className="flex gap-2 flex-col mt-8">
             <Text className=" px-8 lex-1 font-ibmRegular text-white text-x">Fichas de Treino</Text>

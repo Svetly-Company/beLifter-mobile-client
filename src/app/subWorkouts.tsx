@@ -4,27 +4,25 @@ import { Image, StyleSheet, Platform, View, Text, ImageBackground, ImageComponen
 
 
 export default function HomeScreen() {
-  var [height, setHeight] = useState(90)
+  const [height, setHeight] = useState(90)
   
 
-
-
   return (
-    <View style={[styles.fullDiv]}>
+    <View style={styles.fullDiv}>
       <View>
         <ImageBackground source={require ("../assets/moca.jpg")} style={[styles.Image]}>
 
-          <View style={[styles.topSpace]}>
+          <View style={styles.topSpace}>
 
           </View>
 
-          <View style={[styles.bottomDiv]}>
+          <View style={styles.bottomDiv}>
 
-            <Text style={[styles.topText]}>
+            <Text style={styles.topText}>
                 Treino B - Peito e biceps
             </Text>
 
-            <Text style={[styles.bottomText]}>
+            <Text style={styles.bottomText}>
                 Criado por username
             </Text>
 
@@ -33,16 +31,16 @@ export default function HomeScreen() {
         </ImageBackground>
       </View>
       
-    <ScrollView style={[styles.scroll]}>
+    <ScrollView style={styles.scroll}>
       <View style={[styles.content]}>
             <View style={[styles.box, {height}]}>
-              <View style={[styles.topContent]}>
-                <View style={[styles.left]}>
-                  <Image source={require ("../assets/moca.jpg")} style={[styles.boxImg]}>
+              <View style={styles.topContent}>
+                <View style={styles.left}>
+                  <Image source={require ("../assets/moca.jpg")} style={styles.boxImg}>
                   </Image>
                 </View>
 
-                <View style={[styles.right]}>
+                <View style={styles.right}>
 
                   <View >
                     <Text style={[styles.boxText]}>Exercicio X</Text>
@@ -58,7 +56,7 @@ export default function HomeScreen() {
                 </View>
 
                 <View style={[styles.overRight]}>
-                  <TouchableOpacity onPress={ () => setHeight(240)}>
+                  <TouchableOpacity onPress={ () => height == 90 ? setHeight(240) : setHeight(90)}>
                     
                     <Image source={require ("../assets/moca.jpg")} style={[styles.boxCheck]}>
                     </Image>

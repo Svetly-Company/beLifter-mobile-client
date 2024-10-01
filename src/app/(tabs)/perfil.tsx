@@ -65,7 +65,7 @@ export default function Profile() {
 
             <View className="flex flex-row gap-8">
               <View className="w-3/6">
-                <Text className="font-ibmMedium text-xl mt-2 text-white">{user.name}</Text>
+                <Text className="font-ibmMedium text-xl mt-2 text-white capitalize">{user.name}</Text>
               </View>
 
               <View className="w-2/6 flex-row gap-3 mt-2">

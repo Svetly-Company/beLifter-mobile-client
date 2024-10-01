@@ -28,15 +28,24 @@ export default function HeaderHome({user, link} : HeaderHomeParams){
 
   return(
     <View className="bg-neutral-900 pb-4" style={styles.borderStyle}>
-        <View className="p-6 flex-row justify-around items-center">
+        {
+          user ? 
+          <View className="p-6 flex-row justify-around items-center">
           <Image source={require('../../assets/moca.jpg')} className="w-14 h-14 rounded-full" />
           <View className="items-center">
             <Text className="text-[#C6C6C6] font-ibmRegular">Bem vindo(a),</Text>
-            <Text className="text-[#00BF63] text-2xl font-ibmMedium font-semibold tracking-wide">{user ? user.name : 'Pedro'}</Text>
+            <Text className="text-[#00BF63] text-2xl font-ibmMedium font-semibold tracking-wide capitalize">{user.name}</Text>
           </View>
           <Bell color="white" weight="bold" size={28}/>
 
         </View>
+        :
+        <View className="p-6 flex-row justify-between items-center">
+          <Image source={require('../../assets/moca.jpg')} className="w-14 h-14 rounded-full" />
+          <Bell color="white" weight="bold" size={28}/>
+
+        </View>
+        }
         
         <View className="mt-8 mb-2">
         <View className="flex-row px-8 mb-2 justify-between">
