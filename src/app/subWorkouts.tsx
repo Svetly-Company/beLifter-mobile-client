@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import { Image, StyleSheet, Platform, View, Text, ImageBackground, ImageComponent, TouchableOpacity, Button, ScrollView } from 'react-native';
-
-
-
+import { ArrowCircleRight, Barbell, Circle, Repeat, Timer } from 'phosphor-react-native'
+import { NavigationContainer } from '@react-navigation/native';
+import {router} from 'expo-router'
 export default function HomeScreen() {
-  const [height, setHeight] = useState(90)
-  
+  const [height, setHeight] = useState()
+
+  function navigateToEdit(){
+    router.navigate("editWorkout")
+  }
 
   return (
     <View style={styles.fullDiv}>
       <View>
-        <ImageBackground source={require ("../assets/moca.jpg")} style={[styles.Image]}>
+        <ImageBackground source={require ("../assets/homemTreinando.webp")} style={[styles.Image]}>
 
           <View style={styles.topSpace}>
 
@@ -33,110 +36,89 @@ export default function HomeScreen() {
       
     <ScrollView style={styles.scroll}>
       <View style={[styles.content]}>
-            <View style={[styles.box, {height}]}>
-              <View style={styles.topContent}>
-                <View style={styles.left}>
-                  <Image source={require ("../assets/moca.jpg")} style={styles.boxImg}>
-                  </Image>
-                </View>
+        <View style={(styles.exercises)}>
 
-                <View style={styles.right}>
+          <View>
+            <Text style={(styles.exeText)}>Exercicios</Text>
+          </View>
 
-                  <View >
-                    <Text style={[styles.boxText]}>Exercicio X</Text>
+          <View style={(styles.activities)}>
+            <View style={[styles.topContent]}>
+                  <View style={[styles.left]}>
+                    <Image source={require ("../assets/homemTreinando.webp")} style={[styles.boxImg]}>
+                    </Image>
                   </View>
 
-                  <View >
-                    <Text style={[styles.boxText]}>(método)</Text>
-                  </View>
-                  <View>
-                    <Text style={[styles.subBoxText]}>0 de n séries concluidas</Text>
-                  </View>
-                  
-                </View>
+                  <View style={[styles.right]}>
 
-                <View style={[styles.overRight]}>
-                  <TouchableOpacity onPress={ () => height == 90 ? setHeight(240) : setHeight(90)}>
+                    <View >
+                      <Text style={[styles.boxText]}>Exercicio X</Text>
+                    </View>
+
+                    <View >
+                      <Text style={[styles.boxText]}>(método)</Text>
+                    </View>
+                    <View>
+                      <Text style={[styles.subBoxText]}>n séries</Text>
+                    </View>
                     
-                    <Image source={require ("../assets/moca.jpg")} style={[styles.boxCheck]}>
-                    </Image>
-                  </TouchableOpacity>
-                  
-                </View>
-              </View>
-
-              <View style={[styles.bottomContent]}>
-                  <View style={styles.infoBox}>
-
-                    <Text style={[styles.textOne]}>1</Text>
-
-                    <View style={styles.subInfo}>
-                      
-                      <Text style={styles.textSubInfo}>12 repetições</Text>
-                     
-                    </View>
-
-                    <View style={styles.subInfo}>
-                      <Text style={styles.textSubInfo}>20kg</Text>
-                    </View>
-
-                    <View style={styles.subInfo}>
-                      <Text style={styles.textSubInfo}>0</Text>
-                    </View>
-
-                    <Image source={require ("../assets/moca.jpg")} style={[styles.subInfoImage]}>
-                    </Image>
-
                   </View>
 
-                  <View style={[styles.infoBox]}>
-
-                    <Text style={[styles.textOne]}>1</Text>
-
-                    <View style={styles.subInfo}>
-                      
-                      <Text style={styles.textSubInfo}>12 repetições</Text>
-                     
-                    </View>
-
-                    <View style={styles.subInfo}>
-                      <Text style={styles.textSubInfo}>20kg</Text>
-                    </View>
-
-                    <View style={styles.subInfo}>
-                      <Text style={styles.textSubInfo}>0</Text>
-                    </View>
+                  <View style={[styles.overRight]}>
                     <TouchableOpacity>
-                      <Image source={require ("../assets/moca.jpg")} style={[styles.subInfoImage]}></Image>
+                      <ArrowCircleRight size={25} color='white'/>
                     </TouchableOpacity>
                     
-                    
-
                   </View>
+            </View>
+            <View style={(styles.line)}>
 
-                  <View style={styles.infoBox}>
-
-                    <Text style={[styles.textOne]}>1</Text>
-
-                    <View style={styles.subInfo}>
-                      
-                      <Text style={styles.textSubInfo}>12 repetições</Text>
-                     
-                    </View>
-
-                    <View style={styles.subInfo}>
-                      <Text style={styles.textSubInfo}>20kg</Text>
-                    </View>
-
-                    <View style={styles.subInfo}>
-                      <Text style={styles.textSubInfo}>0</Text>
-                    </View>
-
-                    <Image source={require ("../assets/moca.jpg")} style={[styles.subInfoImage]}>
+            </View>
+            <View style={[styles.topContent]}>
+                  <View style={[styles.left]}>
+                    <Image source={require ("../assets/homemTreinando.webp")} style={[styles.boxImg]}>
                     </Image>
-
                   </View>
-              </View>
+
+                  <View style={[styles.right]}>
+
+                    <View >
+                      <Text style={[styles.boxText]}>Exercicio X</Text>
+                    </View>
+
+                    <View >
+                      <Text style={[styles.boxText]}>(método)</Text>
+                    </View>
+                    <View>
+                      <Text style={[styles.subBoxText]}>n séries</Text>
+                    </View>
+                    
+                  </View>
+
+                  <View style={[styles.overRight]}>
+                    <TouchableOpacity>
+                      
+                      <ArrowCircleRight size={25} color='white'/>
+                    </TouchableOpacity>
+                    
+                  </View>
+            </View>
+            
+          </View>
+        </View>
+
+          <View style={[styles.muscularGroups]}>
+            <View  style={[styles.textGroup]}>
+              <Text style={[styles.muscularText]}>Grupos Musculares</Text>
+            </View>
+            <View>
+              <Image source={require ('../assets/muscles.png')}></Image>
+            </View>
+            <View style={[styles.textGroup]}>
+              <Text style={[styles.muscularText]}>Primarios</Text>
+              <Text style={[styles.muscularText]}>Musculos treinados</Text>
+            </View>
+            
           </View>
 
           
@@ -146,8 +128,8 @@ export default function HomeScreen() {
     </ScrollView>
 
       <View style={[styles.bottomButton]}> 
-        <TouchableOpacity style={[styles.Button]}>
-          <Text style={[styles.textButton]}>Finalizar treino</Text>
+        <TouchableOpacity style={[styles.Button]} onPress={navigateToEdit}>
+          <Text style={[styles.textButton]}>Iniciar treino</Text>
         </TouchableOpacity>
       </View>
 
@@ -184,13 +166,15 @@ const styles = StyleSheet.create({
   },
   topText:{
     fontWeight: 'bold',
+    color: 'white'
   },
   bottomText:{
     fontWeight: 'thin',
+    color: 'white'
   },
   content:{
     height: '55%',
-    backgroundColor: 'rgb(1,12,12)',
+    backgroundColor: 'rgba(9,9,9,255)',
     display: 'flex',
     alignItems: 'center',
     alignContent: 'center',
@@ -199,7 +183,7 @@ const styles = StyleSheet.create({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: 'rgb(12,12,12)',
+    backgroundColor: '#090909',
   },
   box:{
     height: 92,
@@ -231,6 +215,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     textAlign: 'center',
+    width: '32%'
   },
   boxText:{
     color:'white'
@@ -286,13 +271,13 @@ const styles = StyleSheet.create({
   infoBox:{
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor: 'rgb(12,12,12)',
+    backgroundColor: '#090909',
     height: 35,
-    width: 290,
+    width: 330,
     borderRadius: 20,
-    gap:2,
+    gap:7,
     alignItems: 'center',
-    marginTop: 5
+    marginTop: 5,
   },
   subInfo:{
     backgroundColor: '#302C30',
@@ -300,12 +285,15 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     color: 'white',
     marginLeft: 10,
-
+    display: 'flex',
+    flexDirection: 'row',
+    alignContent: 'center',
+    alignItems: 'center',
   },
   textSubInfo:{
     color: 'white',
     fontWeight: 'ultralight',
-    paddingLeft: 10,
+    paddingLeft: 7,
     paddingRight: 10,
     display: 'flex',
     flexDirection: 'row',
@@ -322,5 +310,53 @@ const styles = StyleSheet.create({
   },
   scroll:{
     backgroundColor: 'rgb(12,12,12)',
-  }
+  },
+  muscularGroups:{
+    backgroundColor: 'rgb(24,20,20)',
+    width: '90%',
+    borderRadius: 30,
+    alignContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
+  },
+  muscularText:{
+    color: 'white',
+  },
+  textGroup:{
+    alignItems: 'flex-start',
+    width: '100%',
+    marginLeft: '15%',
+    gap: 4,
+    marginTop: '7%',
+    marginBottom: '7%',
+    },
+    exercises:{
+      height: 'auto',
+      backgroundColor: '#151415',
+      width: '90%',
+      marginTop: 30,
+      borderRadius: 30,
+      display: 'flex',
+      marginBottom:30,
+
+    },
+    main:{
+      alignContent: 'center',
+      alignItems: 'center'
+    },
+    exeText:{
+      color: 'white',
+      marginLeft: 34,
+      marginTop: 14,
+    },
+    activities:{
+      display: 'flex',
+      alignContent: 'center',
+      alignItems: 'center'
+    },
+    line:{
+      height: 2,
+      width: '90%',
+      backgroundColor: '#322E33'
+    }
 });
