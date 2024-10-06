@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Image, StyleSheet, Platform, View, Text, ImageBackground, ImageComponent, TouchableOpacity, Button, ScrollView } from 'react-native';
+<<<<<<< HEAD
 import { ArrowCircleRight, Barbell, Circle, Repeat, Timer } from 'phosphor-react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import {router} from 'expo-router'
@@ -9,6 +10,15 @@ export default function HomeScreen() {
   function navigateToEdit(){
     router.navigate("editWorkout")
   }
+=======
+import { Barbell, Circle, Repeat, Timer } from 'phosphor-react-native'
+
+
+export default function HomeScreen() {
+  const [height, setHeight] = useState()
+
+  
+>>>>>>> 3adcbcfd0a6430ba3d304cba29b7501cb9805cd7
 
   return (
     <View style={styles.fullDiv}>
@@ -62,22 +72,102 @@ export default function HomeScreen() {
                       <Text style={[styles.subBoxText]}>n séries</Text>
                     </View>
                     
+<<<<<<< HEAD
                   </View>
 
                   <View style={[styles.overRight]}>
                     <TouchableOpacity>
                       <ArrowCircleRight size={25} color='white'/>
+=======
+                  <Circle size={23} color='#00BF63' />
+                  </TouchableOpacity>
+                  
+                </View>
+              </View>
+
+              <View style={[styles.bottomContent]}>
+                  <View style={styles.infoBox}>
+
+                    <Text style={[styles.textOne]}>1</Text>
+
+                    <View style={styles.subInfo}>
+                    <Repeat size={17} color='white' />
+                      <Text style={styles.textSubInfo}>12 repetições</Text>
+                     
+                    </View>
+
+                    <View style={styles.subInfo}>
+                      <Barbell size={17} color='white'/>  
+                      <Text style={styles.textSubInfo}>20kg</Text>
+                    </View>
+
+                    <View style={styles.subInfo}>
+                      <Timer size={17} color='white'/>
+                      <Text style={styles.textSubInfo}>0</Text>
+                    </View>
+
+                    <Circle size={17} color='#00BF63' />
+
+                  </View>
+
+                  <View style={[styles.infoBox]}>
+
+                    <Text style={[styles.textOne]}>1</Text>
+
+                    <View style={styles.subInfo}>
+                      <Repeat size={17} color='white' />                   
+                      <Text style={styles.textSubInfo}>12 repetições</Text>
+                     
+                    </View>
+
+                    <View style={styles.subInfo}>
+                      <Barbell size={17} color='white'/>  
+                      <Text style={styles.textSubInfo}>20kg</Text>
+                    </View>
+
+                    <View style={styles.subInfo}>
+                      <Timer size={17} color='white'/>
+                      <Text style={styles.textSubInfo}>0</Text>
+                    </View>
+                    <TouchableOpacity>
+                      <Circle size={17} color='#00BF63' />
+>>>>>>> 3adcbcfd0a6430ba3d304cba29b7501cb9805cd7
                     </TouchableOpacity>
                     
                   </View>
             </View>
             <View style={(styles.line)}>
 
+<<<<<<< HEAD
             </View>
             <View style={[styles.topContent]}>
                   <View style={[styles.left]}>
                     <Image source={require ("../assets/homemTreinando.webp")} style={[styles.boxImg]}>
                     </Image>
+=======
+                  <View style={styles.infoBox}>
+
+                    <Text style={[styles.textOne]}>1</Text>
+
+                    <View style={styles.subInfo}>
+                      <Repeat size={17} color='white' />
+                      <Text style={styles.textSubInfo}>12 repetições</Text>
+                     
+                    </View>
+
+                    <View style={styles.subInfo}>
+                    <Barbell size={17} color='white'/>  
+                      <Text style={styles.textSubInfo}>20kg</Text>
+                    </View>
+
+                    <View style={styles.subInfo}>
+                      <Timer size={17} color='white'/>
+                      <Text style={styles.textSubInfo}>0</Text>
+                    </View>
+
+                    <Circle size={17} color='#00BF63' />
+
+>>>>>>> 3adcbcfd0a6430ba3d304cba29b7501cb9805cd7
                   </View>
 
                   <View style={[styles.right]}>
@@ -113,6 +203,20 @@ export default function HomeScreen() {
             </View>
             <View>
               <Image source={require ('../assets/muscles.png')}></Image>
+            </View>
+            <View style={[styles.textGroup]}>
+              <Text style={[styles.muscularText]}>Primarios</Text>
+              <Text style={[styles.muscularText]}>Musculos treinados</Text>
+            </View>
+            
+          </View>
+
+          <View style={[styles.muscularGroups]}>
+            <View  style={[styles.textGroup]}>
+              <Text style={[styles.muscularText]}>Grupos Musculares</Text>
+            </View>
+            <View>
+              <Image source={require ('../assets/musculos.png')}></Image>
             </View>
             <View style={[styles.textGroup]}>
               <Text style={[styles.muscularText]}>Primarios</Text>
@@ -237,7 +341,7 @@ const styles = StyleSheet.create({
   },
   bottomButton:{
     backgroundColor:'rgb(24,20,20)',
-    height: 100,
+    height: 120,
     borderRadius: 30,
     alignContent: 'center',
     alignItems: 'center',
@@ -323,12 +427,17 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   textGroup:{
+<<<<<<< HEAD
     alignItems: 'flex-start',
+=======
+    alignItems: 'left',
+>>>>>>> 3adcbcfd0a6430ba3d304cba29b7501cb9805cd7
     width: '100%',
     marginLeft: '15%',
     gap: 4,
     marginTop: '7%',
     marginBottom: '7%',
+<<<<<<< HEAD
     },
     exercises:{
       height: 'auto',
@@ -360,3 +469,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#322E33'
     }
 });
+=======
+    }
+});
+>>>>>>> 3adcbcfd0a6430ba3d304cba29b7501cb9805cd7
