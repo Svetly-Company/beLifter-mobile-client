@@ -5,7 +5,7 @@ import { Barbell, Circle, Repeat, Timer } from 'phosphor-react-native'
 
 export default function editWorkout() {
 
-  const [height, setHeight] = useState(80)
+  const [height, setHeight] = useState(90)
   var [maxHeight, setMaxHeight] = useState(35)
 
   const [openModal, setOpenModal] = useState(false);
@@ -197,7 +197,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#090909',
   },
   box:{
-    height: 80,
     width: '90%',
     backgroundColor: 'rgb(24,20,20)',
     borderRadius: 25,
@@ -282,7 +281,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     backgroundColor: 'rgb(12,12,12)',
     maxHeight: 35,
-    width: 290,
+    width: 310,
     borderRadius: 20,
     gap:2,
     alignItems: 'center',
