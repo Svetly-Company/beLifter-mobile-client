@@ -12,7 +12,7 @@ export function CheckDay({checked, children, date}: TCheckDay){
         return(
             <View className="flex flex-col items-center gap-2">
                 <View className={`flex-0 ${children == getDayOfWeek('string') ? "border border-b-white" : ""}`}>
-                    <Text className="font-ibmRegular text-white text-x pb-1">{children}</Text>
+                    <Text className="font-ibmRegular text-white text-x">{children}</Text>
                 </View>
                 <View className={`flex flex-col justify-center items-center h-12 w-12 rounded-full 
                 ${

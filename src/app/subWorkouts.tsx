@@ -39,10 +39,10 @@ export default function HomeScreen() {
       <ScrollView style={styles.scroll}>
       <View style={[styles.content]}>
         <View style={(styles.exercises)}>
-
-          <View style={(styles.toTextExercises)}>
+{/* 
+          <View style={(styles.toTextExercises)}> */}
             <Text style={(styles.exeText)}>Exercicios</Text>
-          </View>
+          {/* </View> */}
 
           <View style={(styles.activities)}>
             <View style={[styles.topContent]}>
@@ -329,7 +329,6 @@ const styles = StyleSheet.create({
   },
   textGroup:{
     alignItems: 'flex-start',
-    alignItems: 'left',
     width: '100%',
     marginLeft: '15%',
     gap: 4,

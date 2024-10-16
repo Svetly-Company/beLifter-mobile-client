@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { Barbell, Globe, House, User } from "phosphor-react-native";
+import { Barbell, ChartPieSlice, Globe, House, User } from "phosphor-react-native";
 import { StatusBar } from "expo-status-bar";
 import { AccessibilityState, GestureResponderEvent, Text, TouchableOpacity, StyleSheet } from "react-native";
 import {BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
@@ -10,7 +10,7 @@ const queryClient = new QueryClient()
 export default function TabLayout(){
   return(
     <QueryClientProvider client={queryClient}> 
-    <StatusBar backgroundColor={'#111112'} style="light" translucent/>
+    <StatusBar backgroundColor={'#000'} style="light" translucent/>
     <Tabs screenOptions={({navigation, route}) => ({
       headerShown: false,
       tabBarLabel: navigation.isFocused() ? route.name : '',
@@ -64,6 +64,15 @@ export default function TabLayout(){
           return <TabButton {...props}/>
         }
       }}/>
+      <Tabs.Screen name="estatistica" options={{
+        tabBarIcon: ({size, color, focused}) => (
+          <ChartPieSlice size={size} color={color} weight="bold"/>
+        ),
+
+        tabBarButton: (props) => {
+          return <TabButton {...props}/>
+        }
+      }} />
 
       <Tabs.Screen name="perfil" options={{
         tabBarIcon: ({size, color, focused}) => (
