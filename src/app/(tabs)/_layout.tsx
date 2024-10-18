@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { Barbell, ChartPieSlice, Globe, House, User } from "phosphor-react-native";
+import { Barbell, ChartPieSlice, ChatTeardropText, Globe, House, User } from "phosphor-react-native";
 import { StatusBar } from "expo-status-bar";
 import { AccessibilityState, GestureResponderEvent, Text, TouchableOpacity, StyleSheet } from "react-native";
 import {BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
@@ -83,6 +83,20 @@ export default function TabLayout(){
           return <TabButton {...props}/>
         }
       }} />
+      <Tabs.Screen name="messages" options={{
+        tabBarIcon: ({size, color, focused}) => (
+          <ChatTeardropText size={size} color={color} weight="bold"/>
+        ),
+        
+        tabBarButton: (props) => {
+          return <TabButton {...props}/>
+        }
+      }}/>
+      <Tabs.Screen name="(chat)/[chatid]" options={{
+        tabBarStyle: {display: "none"},
+        href: null,
+      }}/>
+
     </Tabs>
     </QueryClientProvider>
   )
