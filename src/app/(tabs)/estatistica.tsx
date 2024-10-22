@@ -10,6 +10,8 @@ import { useState } from "react";
 import { userStorage } from "../../storage/zustand/store";
 import CircularChart from "../../components/PieChart";
 import { BoxModel } from "../../components/BoxModel";
+import { useQuery } from "react-query"
+import axios from "axios"
 
 
 
@@ -45,54 +47,26 @@ function SelectDay({ status, children, date }: selectProps) {
   )
 }
 
-const data = [
-  {
-    name: "Seoul",
-    population: 21500000,
-    color: "rgba(131, 167, 234, 1)",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-  {
-    name: "Toronto",
-    population: 2800000,
-    color: "#F00",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-  {
-    name: "Beijing",
-    population: 527612,
-    color: "#afa",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-  {
-    name: "New York",
-    population: 8538000,
-    color: "#ffffff",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  },
-  {
-    name: "Moscow",
-    population: 11920000,
-    color: "rgb(0, 0, 255)",
-    legendFontColor: "#7F7F7F",
-    legendFontSize: 15
-  }
-];
-
-
 export default function Stats() {
   const [statsData, setStatsData] = useState<StatsModel[]>([])
 
   const user = userStorage((state) => state.user)
 
+  const {data, refetch} = useQuery('stats', async()=> {
+    return await axios.get('https://belifter-server.onrender.com/workout/stats',
+        {
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
+        })
+})
+  const apiValues = Object.values(data?.data)
+  const calories = apiValues.pop()
+
   let week = getWeek();
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#0D0D0D' }}>
-      <View className="flex-row h-40 w-full items-center justify-between p-6 ">
+      <View className="flex-row h-32 w-full items-center justify-between p-6 ">
         <Image style={{ height: 50, width: 100 }} source={require("../../assets/beLiftSvg.svg")}></Image>
         <View className="flex-row gap-3 items-center">
           <Bell color="#fff" size={32} />
@@ -113,7 +87,7 @@ export default function Stats() {
 
 
       <View className="w-full items-center justify-center mt-20 mb-4">
-        <CircularChart />
+        <CircularChart apiValues={apiValues}/>
       </View>
       <View className="bg-[#151415] h-20 rounded-b-3xl flex-row items-center justify-around">
         <View className="items-center">
@@ -121,7 +95,7 @@ export default function Stats() {
             <Circle color="#00BF63" weight="fill" size={18}></Circle>
             <Text className="text-white font-medium">Proteínas</Text>
           </View>
-          <Text className="text-white font-medium">75g | 100%</Text>
+          <Text className="text-white font-medium">{String(apiValues[2])}g | 100%</Text>
         </View>
 
         <View className="items-center">
@@ -129,7 +103,7 @@ export default function Stats() {
             <Circle color="#FFC107" weight="fill" size={18}></Circle>
             <Text className="text-white font-medium">Carbidratos</Text>
           </View>
-          <Text className="text-white font-medium">0g | 0kcal</Text>
+          <Text className="text-white font-medium">{String(apiValues[0])}g | 0kcal</Text>
         </View>
 
         <View className="items-center">
@@ -137,7 +111,7 @@ export default function Stats() {
             <Circle color="#FF3D00" weight="fill" size={18}></Circle>
             <Text className="text-white font-medium">Gorduras</Text>
           </View>
-          <Text className="text-white font-medium">0g | 0%</Text>
+          <Text className="text-white font-medium">{String(apiValues[1])}g | 0%</Text>
         </View>
       </View>
       

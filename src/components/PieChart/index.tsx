@@ -1,23 +1,27 @@
 import { View } from "react-native"
 import PieChart from "react-native-pie-chart"
 
+import { userStorage } from "../../storage/zustand/store"
 
 
-export default function CircularChart(){
+interface CircularChartProps{
+  apiValues: any[] 
+}
 
- const values = [ 110, 70, 65]
+export default function CircularChart({apiValues} : CircularChartProps){
 
+
+ 
   return(
     <View>
       <PieChart
         widthAndHeight={250}
-        series={values}
+        series={apiValues}
         coverRadius={.6}
-        
-        sliceColor={["#00BF63", "#FFC107", "#FF3D00"]}
+        sliceColor={["#FFC107", "#FF3D00", "#00BF63"]}
       >
 
-      </PieChart>
+      </PieChart> 
     </View>
   )
 }
