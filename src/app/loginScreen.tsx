@@ -83,6 +83,10 @@ export default function LoginScreen( ) {
         
         setUser(JSON.parse(userData))
     }
+
+    function navigateToforgotPass(){
+        router.navigate("./forgotPass")
+      }
   return (
     <View style={styles.Main}>
         
@@ -107,7 +111,9 @@ export default function LoginScreen( ) {
                 
             />  
             <View style={styles.bottomView}>
-                <Text style={styles.smallText}>Esqueci minha senha.</Text>
+                <TouchableOpacity onPress={navigateToforgotPass}>
+                    <Text style={styles.smallText}>Esqueci minha senha.</Text>
+                </TouchableOpacity>
             </View>
             
             <TouchableOpacity 

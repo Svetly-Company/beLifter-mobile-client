@@ -53,7 +53,7 @@ export default function Profile() {
   return (
       <View className="flex-1 bg-black">
 
-        <View className="h-2/5 rounded-b-3xl flex w-screen flex-col bg-neutral-900">
+        <View className="h-96 rounded-b-3xl flex flex-col bg-neutral-900">
 
           <View className="h-12"></View>
 

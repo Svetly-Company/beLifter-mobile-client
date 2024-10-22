@@ -33,6 +33,10 @@ export default function Home(){
     router.navigate("../subWorkout")
   }
 
+  function navigateToAtendimento(){
+    router.navigate("../atendimento")
+  }
+
   return(
     
     <GestureDetector gesture={pan}>
@@ -41,7 +45,10 @@ export default function Home(){
             <HeaderHome user={user} link="../subWorkouts"/>
           <View className="mt-8 mx-4 border-b-2 pb-12 border-gray-400">
             <BoxModel title="Pendências" desc="Resolva suas pendências" type="pendencias"/>
-            <BoxModel title="Atendimento" desc="Fale com um de nossos especialistas da academia" type="atendimento" bgColor/>
+            <TouchableOpacity onPress={navigateToAtendimento}>
+              <BoxModel title="Atendimento" desc="Fale com um de nossos especialistas da academia" type="atendimento" bgColor/>
+            </TouchableOpacity>
+            
           </View>
         </View>
       </SafeAreaView>
