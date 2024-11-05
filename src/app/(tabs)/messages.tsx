@@ -7,11 +7,13 @@ import { useEffect, useState } from "react";
 import { getUserData } from "../../storage/userData/getUserData";
 import axios from "axios";
 import { Bell } from "phosphor-react-native";
+import { userStorage } from "../../storage/zustand/store";
 
 export default function Mensagens(){
   
   const [cont, setCont] = useState<propContatos[]>([])
   const [loading, setLoading] = useState<boolean>(true)
+  const user = userStorage((state) => state.user)
 
   useEffect(()=>{
     loadUserData()
@@ -50,7 +52,7 @@ export default function Mensagens(){
                   <Image source={require('../../assets/moca.jpg')} className="w-14 h-14 rounded-full"/>
                     <View className="items-center">
                       <Text className="text-white text-xl font-ibmRegular">Bem-vindo,</Text>
-                      <Text className="text-green-450 text-2xl font-ibmMedium font-semibold">Graciane Barbosa</Text>
+                      <Text className="text-green-450 text-2xl font-ibmMedium font-semibold">{user.name}</Text>
                     </View>
                     <Bell color="white" weight="bold" size={28}/>
                 </View>

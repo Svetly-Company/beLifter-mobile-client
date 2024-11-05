@@ -131,7 +131,7 @@ export default function Profile() {
               <View className="ml-8 flex gap-2">
 
                 <View>
-                  <Text className="font-ibmMedium text-lg text-white">Luís Ricarda</Text>
+                  <Text className="font-ibmMedium text-lg text-white">{user.name}</Text>
                 </View>
 
                 <View>

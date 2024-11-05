@@ -8,6 +8,7 @@ import { ScrollView } from "react-native-virtualized-view";
 import { useQuery } from "react-query";
 import { userStorage } from "../../storage/zustand/store";
 import { ImageSourcePropType } from "react-native";
+import { router } from "expo-router";
 
 interface authorObject {
     name: string
@@ -94,7 +95,7 @@ export default function Comunidade(){
                     <TouchableOpacity>
                         <Bell color="white" weight="bold" size={28}/>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=> router.navigate("./messages")}>
                         <PaperPlaneTilt color="white" weight="bold" size={28}/>
                     </TouchableOpacity>
                 </View>

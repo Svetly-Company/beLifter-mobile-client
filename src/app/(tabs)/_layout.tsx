@@ -84,13 +84,8 @@ export default function TabLayout(){
         }
       }} />
       <Tabs.Screen name="messages" options={{
-        tabBarIcon: ({size, color, focused}) => (
-          <ChatTeardropText size={size} color={color} weight="bold"/>
-        ),
-        
-        tabBarButton: (props) => {
-          return <TabButton {...props}/>
-        }
+        tabBarStyle: {display: "none"}, 
+        href: null
       }}/>
       <Tabs.Screen name="(chat)/[chatid]" options={{
         tabBarStyle: {display: "none"},

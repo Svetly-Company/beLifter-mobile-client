@@ -60,7 +60,8 @@ export default function Stats() {
             }
         })
 })
-  const apiValues = Object.values(data?.data)
+  const dt = data?.data || {"carbo": 32, gordu: 32, prot: 21, calori: 52}
+  const apiValues = Object.values(dt)
   const calories = apiValues.pop()
 
   let week = getWeek();
