@@ -27,6 +27,7 @@ import {
     IBMPlexSans_700Bold_Italic,
   } from '@expo-google-fonts/ibm-plex-sans';
 import { QueryClient, QueryClientProvider } from "react-query";
+import LoadingScren from "./loading";
 
 const queryClient = new QueryClient()
 
@@ -44,10 +45,10 @@ export default function Layout(){
       
     return (
         <QueryClientProvider client={queryClient}>
-            <StatusBar backgroundColor={'#111112'} style="light" translucent/>
+            <StatusBar backgroundColor={'#000'} style="light" translucent/>
             <GestureHandlerRootView>                
                 {
-                    fontsLoaded? <Slot /> : ''
+                    fontsLoaded? <Slot /> : <LoadingScren />
                 }
             </GestureHandlerRootView>
         </QueryClientProvider>

@@ -119,19 +119,9 @@ export default function LoginScreen( ) {
             <TouchableOpacity 
             onPress={verifyUser}
             style={styles.registerButton}>
-                <Text>Entrar</Text>
+                <Text className='text-white font-ibmMedium '>Entrar</Text>
             </TouchableOpacity> 
             
-        </View>
-
-        <View style={styles.middle}>
-            <View style={styles.whiteLine}></View>
-            <View style={styles.orView}><Text style={styles.or}>ou</Text></View>
-            <View style={styles.whiteLine}></View>
-        </View>
-
-        <View style={styles.bottom}>
-            <TouchableOpacity style={styles.googleButton}><Text style={styles.googleText}>Login com o google</Text></TouchableOpacity>
         </View>
 
         
@@ -161,8 +151,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     input: {
-        height: 40,
-        width: 330,
+        height: 50,
+        width: 340,
         backgroundColor: '#151415',
         borderRadius: 15,
         marginTop: 30,
@@ -177,9 +167,9 @@ const styles = StyleSheet.create({
         width: '30%'
     },
     registerButton: {
-        backgroundColor: '#00BF63',
-        width: 312,
-        height: 45,
+        backgroundColor: '#01dc72',
+        width: 340,
+        height: 55,
         borderRadius: 30,
         textAlign: 'center',
         justifyContent: 'center',

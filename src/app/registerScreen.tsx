@@ -74,7 +74,9 @@ export default function RegisterScreen(){
 
 
   return (
-    <View className="flex-1 bg-gray-950 p-5">
+    <View className="flex-1 bg-gray-950 p-5 justify-center">
+
+      
       <Text className="font-ibmMedium text-xl text-white pl-6 pt-8 mt-2">Criar uma nova conta</Text>
       <View className="mx-4 mt-8">
         <TextInput className="w-full bg-neutral-900 px-4 mb-11 py-2 rounded-2xl color-gray-200" 
@@ -110,10 +112,10 @@ export default function RegisterScreen(){
         </View>
         
         <TouchableOpacity onPress={registerUser} style={{backgroundColor: "#00BF63", height: 46, alignItems:"center", justifyContent: "center", marginTop: 28, borderRadius: 40}}>
-          <Text className="text-white">Avançar</Text>
+          <Text className="text-white font-ibmMedium">Avançar</Text>
         </TouchableOpacity>
 
-        <View className="flex-row items-center justify-around gap-22 w-full mt-28 ">
+        {/* <View className="flex-row items-center justify-around gap-22 w-full mt-28 ">
           <View className="h-px bg-white w-40"></View>
           <Text className="text-white text-sm">OU</Text>
           <View className="h-px bg-white w-40"></View>
@@ -122,7 +124,7 @@ export default function RegisterScreen(){
         <TouchableOpacity style={{backgroundColor: "#ffffff", flexDirection: 'row', height: 40, alignItems:"center", justifyContent: "center", marginTop: 80, borderRadius: 40}}>
           <Image className="w-6 h-6 mr-4" source={require('../assets/google_icon.png')}></Image>
           <Text className="font-medium">Continuar com o Google</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
       </View>
     </View>

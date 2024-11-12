@@ -30,8 +30,10 @@ export default function HeaderHome({user, link} : HeaderHomeParams){
     <View className="bg-neutral-900 pb-4" style={styles.borderStyle}>
         {
           user ? 
-          <View className="p-6 flex-row justify-around items-center">
-          <Image source={require('../../assets/moca.jpg')} className="w-14 h-14 rounded-full" />
+          <View className="py-6 flex-row justify-around items-center">
+          <TouchableOpacity onPress={() => router.navigate("../academyProfile")}>
+            <Image source={require('../../assets/moca.jpg')} className="w-14 h-14 rounded-full" />
+          </TouchableOpacity>
           <View className="items-center">
             <Text className="text-[#C6C6C6] font-ibmRegular">Bem vindo(a),</Text>
             <Text className="text-[#00BF63] text-2xl font-ibmMedium font-semibold tracking-wide capitalize">{user.name}</Text>
@@ -41,7 +43,9 @@ export default function HeaderHome({user, link} : HeaderHomeParams){
         </View>
         :
         <View className="p-6 flex-row justify-between items-center">
-          <Image source={require('../../assets/moca.jpg')} className="w-14 h-14 rounded-full" />
+          
+            <Image source={require('../../assets/moca.jpg')} className="w-14 h-14 rounded-full" />
+
           <Bell color="white" weight="bold" size={28}/>
 
         </View>
