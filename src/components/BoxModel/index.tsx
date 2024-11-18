@@ -6,11 +6,12 @@ import { Link } from "expo-router";
 interface boxModelParams {
     title: string,
     desc?: string,
-    type: "dieta" | "atendimento" | "pendencias" 
+    type: "dieta" | "atendimento" | "pendencias",
+    urlRedirect?: string,
     bgColor?: boolean
 }
 
-export function BoxModel( {title, desc, type="atendimento", bgColor=false} : boxModelParams) {
+export function BoxModel( {title, desc, type="atendimento", bgColor=false, urlRedirect } : boxModelParams) {
     return( 
         <View className={"flex-wrap " + (!bgColor ? 'bg-neutral-900' : 'bg-neutral-950') + " mt-4 py-6 px-6 rounded-3xl gap-2"}>
             <View className="flex-row justify-between items-center">
@@ -32,7 +33,7 @@ export function BoxModel( {title, desc, type="atendimento", bgColor=false} : box
 
               <View className="flex-row p-2 bg-gray-600 rounded-2xl">
                 <TouchableOpacity className="">
-                  <Link href={"/treino"}>
+                  <Link href={urlRedirect || "/treino"}>
                     <CaretRight color="white" size={22}/>
                   </Link>
                   

@@ -116,7 +116,7 @@ export default function Stats() {
         </View>
       </View>
       
-      <BoxModel title="Minha dieta" type="dieta" desc="Monitore sua dieta"/>
+      <BoxModel urlRedirect="/dieta" title="Minha dieta" type="dieta" desc="Monitore sua dieta"/>
 
 
     </SafeAreaView>
