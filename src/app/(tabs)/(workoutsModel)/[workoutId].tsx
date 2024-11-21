@@ -1,21 +1,54 @@
-import { useState } from 'react';
-import { Image, StyleSheet, Platform, View, Text, ImageBackground, ImageComponent, TouchableOpacity, Button, ScrollView } from 'react-native';
+import { useEffect, useState } from 'react';
+import { StyleSheet, Platform, View, Text, ImageComponent, TouchableOpacity, Button, ScrollView, ImageSourcePropType, FlatList } from 'react-native';
 import { ArrowCircleRight, Barbell, Circle, Repeat, Timer } from 'phosphor-react-native'
 import { NavigationContainer } from '@react-navigation/native';
-import {router} from 'expo-router'
+import {router, useLocalSearchParams} from 'expo-router'
+import { Image, ImageBackground } from 'expo-image';
+import Exercise from '../../../components/Exercise';
+import { it } from 'rn-emoji-keyboard';
+
+
+interface exercisesModel {
+  name: string,
+  description: string,
+  idExercise: number,
+  image: ImageSourcePropType
+}
+
+interface scheduleModel {
+  idWorkout: number,
+  name: string,
+  description: string
+  image: ImageSourcePropType,
+  image2: ImageSourcePropType,
+  exercises: exercisesModel[]
+}
 
 export default function HomeScreen() {
-  const [height, setHeight] = useState()
+  const {text, data, id, bodyPart, imgModel} = useLocalSearchParams();
+  const [dados, setDados] = useState<exercisesModel[]>();
 
-  function navigateToEdit(){
-    router.navigate("editWorkout")
+  useEffect(() => {
+    
+    if (data) {
+      const parsedData = JSON.parse(data as string);
+      
+      if (parsedData) {
+        setDados(parsedData);
+      }
+    }
+  }, [data, id]);
+
+  function navigateToEdit() {
+    router.navigate("../../post");
   }
 
+  console.log(dados)
 
   return (
     <View style={styles.fullDiv}>
       <View>
-        <ImageBackground source={require ("../assets/homemTreinando.webp")} style={[styles.Image]}>
+        <ImageBackground source={JSON.parse(imgModel as string)} style={[styles.Image]}>
 
           <View style={styles.topSpace}>
 
@@ -24,11 +57,11 @@ export default function HomeScreen() {
           <View style={styles.bottomDiv}>
 
             <Text style={styles.topText}>
-                Treino B - Peito e biceps
+                {text}
             </Text>
 
             <Text style={styles.bottomText}>
-                Criado por username
+                Criado por Basso
             </Text>
 
           </View>
@@ -45,66 +78,10 @@ export default function HomeScreen() {
           {/* </View> */}
 
           <View style={(styles.activities)}>
-            <View style={[styles.topContent]}>
-                  <View style={[styles.left]}>
-                    <Image source={require ("../assets/homemTreinando.webp")} style={[styles.boxImg]}>
-                    </Image>
-                  </View>
-
-                  <View style={[styles.right]}>
-
-                    <View >
-                      <Text style={[styles.boxText]}>Exercicio X</Text>
-                    </View>
-
-                    <View >
-                      <Text style={[styles.boxText]}>(método)</Text>
-                    </View>
-                    <View>
-                      <Text style={[styles.subBoxText]}>n séries</Text>
-                    </View>
-                    
-                  </View>
-
-                  <View style={[styles.overRight]}>
-                    <TouchableOpacity>
-                      <ArrowCircleRight size={25} color='white'/>
-                    </TouchableOpacity>
-                    
-                  </View>
-            </View>
-            <View style={(styles.line)}>
-
-            </View>
-            <View style={[styles.topContent]}>
-                  <View style={[styles.left]}>
-                    <Image source={require ("../assets/homemTreinando.webp")} style={[styles.boxImg]}>
-                    </Image>
-                  </View>
-
-                  <View style={[styles.right]}>
-
-                    <View >
-                      <Text style={[styles.boxText]}>Exercicio X</Text>
-                    </View>
-
-                    <View >
-                      <Text style={[styles.boxText]}>(método)</Text>
-                    </View>
-                    <View>
-                      <Text style={[styles.subBoxText]}>n séries</Text>
-                    </View>
-                    
-                  </View>
-
-                  <View style={[styles.overRight]}>
-                    <TouchableOpacity>
-                      
-                      <ArrowCircleRight size={25} color='white'/>
-                    </TouchableOpacity>
-                    
-                  </View>
-            </View>
+            {
+              dados ? dados.map((item) => <Exercise title={item.name} desc={item.description} img={item.image} key={item.idExercise}/>) : <View></View>
+            }
+            
             
             
           </View>
@@ -115,7 +92,7 @@ export default function HomeScreen() {
               <Text style={[styles.muscularText]}>Grupos Musculares</Text>
             </View>
             <View>
-              <Image source={require ('../assets/musculos.png')}></Image>
+              <Image style={styles.muscleImage} source={JSON.parse(bodyPart as string)}></Image>
             </View>
             <View style={[styles.textGroup]}>
               <Text style={[styles.muscularText]}>Primarios</Text>
@@ -206,6 +183,11 @@ const styles = StyleSheet.create({
   boxImg:{
     height: 43,
     width: 80,
+    borderRadius: 10,
+  },
+  muscleImage:{
+    height: 300,
+    width: 300,
     borderRadius: 10,
   },
   left:{

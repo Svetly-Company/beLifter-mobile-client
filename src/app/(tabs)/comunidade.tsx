@@ -31,8 +31,6 @@ export default function Comunidade(){
                 }
             })
     })
-
-    
     
     useEffect(()=> {
         if(userPost){

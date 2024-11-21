@@ -11,7 +11,7 @@ export default function TabLayout(){
   return(
     <QueryClientProvider client={queryClient}> 
     <StatusBar backgroundColor={'#000'} style="light" translucent/>
-    <Tabs screenOptions={({navigation, route}) => ({
+    <Tabs backBehavior="history" screenOptions={({navigation, route}) => ({
       headerShown: false,
       tabBarLabel: navigation.isFocused() ? route.name : '',
       tabBarStyle: {
@@ -88,6 +88,14 @@ export default function TabLayout(){
         href: null
       }}/>
       <Tabs.Screen name="(chat)/[chatid]" options={{
+        tabBarStyle: {display: "none"},
+        href: null,
+      }}/>
+      <Tabs.Screen name="(workoutsModel)/[workoutId]" options={{
+        tabBarStyle: {display: "none"},
+        href: null,
+      }}/>
+      <Tabs.Screen name="(workoutsModel)/editExercise/[exerciseId]" options={{
         tabBarStyle: {display: "none"},
         href: null,
       }}/>

@@ -25,11 +25,12 @@ interface scheduleModel {
   name: string,
   description: string
   image: ImageSourcePropType,
+  image2: ImageSourcePropType,
   exercises: exercisesModel[]
 }
-
+ 
 export default function Treino(){
-    let [status, setStatus] = useState(false);
+    let [status, setStatus] = useState(false); 
     const user = userStorage((state) => state.user)
     const [schedule, setSchedule] = useState<scheduleModel[]>()
     const [scheduleExercises, setScheduleExercises] = useState<exercisesModel[]>()
@@ -53,23 +54,20 @@ export default function Treino(){
 
     function toggleStatus(){
       setStatus(!status)
-      console.log(scheduleExercises)
+      console.log(scheduleExercises) 
     }
     return(
         <SafeAreaView style={{flex: 1}}>
           <ScrollView className="bg-gray-950 flex-1">
-          <HeaderHome link={"../subWorkout"}/>
+          <HeaderHome/>
           <Frequency />
           <View className="flex gap-2 flex-col mt-8">
             <Text className=" px-8 lex-1 font-ibmRegular text-white text-x">Fichas de Treino</Text>
             {
-              schedule ? <FlatList data={scheduleExercises} renderItem={({item}) => <Workouts source={item.image} text={item.name} description={item.description}></Workouts>} keyExtractor={item => item.idExercise.toString()} horizontal/> : <View></View>
-            }
+              schedule && scheduleExercises ? <FlatList data={schedule} renderItem={({item}) => <Workouts source={item.image} text={item.name} description={item.description} id={item.idWorkout} exerciseInfo={item.exercises} bodyPart={item.image2}></Workouts>} keyExtractor={item => item.idWorkout.toString()} horizontal/> : <View></View>
+            } 
             
-            {/* <ScrollView horizontal={true} className="px-3 flex mt-2 flex-row">
-              <Workouts source={require("../../assets/mulherTreinando.webp")} text="Treino A" description="Peito/Ombro"/>
-              <Workouts source={require("../../assets/homemTreinando.webp")} text="Treino B" description="Quadriceps/Posterior"/>
-            </ScrollView> */}
+
             <View className="flex gap-2 flex-col mt-8 px-8 pb-24">
               <View className="flex flex-row justify-between">
                 <Text className="text-gray-300 font-ibmMedium">Criada por:</Text>
@@ -79,7 +77,7 @@ export default function Treino(){
                     { status ? <CaretUp color="white" size={18} weight="fill"/> : <CaretDown color="white" size={19} weight="fill"/>}
                   </TouchableHighlight>
                 </View>
-              </View>
+              </View> 
               <View>
               {
                 status ?
