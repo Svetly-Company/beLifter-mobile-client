@@ -1,4 +1,4 @@
-import { Text, View, ScrollView, TouchableHighlight, Image, ImageSourcePropType } from "react-native";
+import { Text, View, ScrollView, TouchableHighlight, Image, ImageSourcePropType, TouchableOpacity } from "react-native";
 import { CaretDown, CaretUp } from "phosphor-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HeaderHome  from "../../components/HeaderHome";
@@ -9,6 +9,7 @@ import { userStorage } from "../../storage/zustand/store";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { FlatList } from "react-native-gesture-handler";
+import { router } from "expo-router";
 
 const date = new Date()
 const dayOfWeek = date.getDay()
@@ -56,11 +57,18 @@ export default function Treino(){
       setStatus(!status)
       console.log(scheduleExercises) 
     }
+
+    function navigateToCalendar(){
+      router.navigate("../calendar")
+    }
+
     return(
         <SafeAreaView style={{flex: 1}}>
           <ScrollView className="bg-gray-950 flex-1">
           <HeaderHome/>
-          <Frequency />
+          <TouchableOpacity onPress={navigateToCalendar}>
+            <Frequency />
+          </TouchableOpacity>
           <View className="flex gap-2 flex-col mt-8">
             <Text className=" px-8 lex-1 font-ibmRegular text-white text-x">Fichas de Treino</Text>
             {
