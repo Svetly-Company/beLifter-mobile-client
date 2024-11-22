@@ -36,9 +36,9 @@ export default function HeaderHome({user, link} : HeaderHomeParams){
           </TouchableOpacity>
           <View className="items-center">
             <Text className="text-[#C6C6C6] font-ibmRegular">Bem vindo(a),</Text>
-            <Text className="text-[#00BF63] text-2xl font-ibmMedium font-semibold tracking-wide capitalize">{user.name}</Text>
+            <Text className="text-[#00BF63] text-xl font-ibmMedium font-semibold tracking-wide capitalize">{user.name}</Text>
           </View>
-          <Bell color="white" weight="bold" size={28}/>
+          <Bell size={28} color="#f5f5f5" />
 
         </View>
         :
@@ -46,7 +46,7 @@ export default function HeaderHome({user, link} : HeaderHomeParams){
           
             <Image source={require('../../assets/moca.jpg')} className="w-14 h-14 rounded-full" />
 
-          <Bell color="white" weight="bold" size={28}/>
+            <Bell size={28} color="#f5f5f5" />
 
         </View>
         }
@@ -66,7 +66,7 @@ export default function HeaderHome({user, link} : HeaderHomeParams){
               </View>     
 
               <TouchableOpacity onPress={handleNavigate}> 
-                  <CaretRight color="white" size={42}/>
+                  <View className="bg-GrayButton p-2 rounded-full"><CaretRight color="white" size={35}/></View>
               </TouchableOpacity>
             </View>
 

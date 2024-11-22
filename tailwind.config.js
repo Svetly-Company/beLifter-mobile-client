@@ -8,7 +8,10 @@ module.exports = {
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
-      colors,
+      colors: {
+        GrayBar: '#322E33',
+        GrayButton: '#302C30',
+      },
       fontFamily
     },
   },

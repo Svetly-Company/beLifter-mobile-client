@@ -1,4 +1,4 @@
-import { ImageBackground, Text, TouchableOpacity, View } from "react-native";
+import { ImageBackground, Text, TouchableOpacity, View, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import HeaderHome from "../../components/HeaderHome";
 import { BoxModel } from "../../components/BoxModel";
@@ -24,34 +24,41 @@ export default function Home(){
   //   setUser(userData)
   // }
   const pan = Gesture.Pan().runOnJS(true).onEnd((e) => {
-    if(e.translationX > 0){
+    if(e.translationY > 0){
       router.navigate("../post")
     }
   })
 
-  // function navigateToWorkout(){
-  //   router.navigate("../subWorkout")
-  // }
+  function navigateToWorkout(){
+    router.navigate("../subWorkout")
+  }
+
+  function navigateToAgenda(){
+    router.navigate("../agenda")
+  }
 
   function navigateToAtendimento(){
     router.navigate("../atendimento")
   }
 
   return(
-    
-    <GestureDetector gesture={pan}>
-      <SafeAreaView style={{flex: 1}}>
-        <View className="bg-gray-950 flex-1">
-            <HeaderHome user={user}/>
-          <View className="mt-8 mx-4 border-b-2 pb-12 border-gray-400">
-            <BoxModel title="Pendências" desc="Resolva suas pendências" type="pendencias"/>
-            <TouchableOpacity onPress={navigateToAtendimento}>
-              <BoxModel title="Atendimento" desc="Fale com um de nossos especialistas da academia" type="atendimento" bgColor/>
-            </TouchableOpacity>
-            
+
+//    <GestureDetector gesture={pan}>
+      <ScrollView style={{flex: 1, paddingBottom: 50}}>
+          <View className="bg-gray-950 flex-1 mt-6">
+              <HeaderHome user={user} link="../subWorkouts"/>
+            <View className="mt-4 mx-4 border-b-2 pb-24 ">
+              <BoxModel title="Pendências" desc="Resolva suas pendências" type="pendencias"/>
+              <TouchableOpacity onPress={navigateToAgenda}>
+                <BoxModel title="Agenda" desc="Veja sua agenda pessoal personalizada de treinos." type="agenda" bgColor/>
+              </TouchableOpacity>
+              <View className="border-GrayBar mt-4 mx-4 border"></View>
+              <TouchableOpacity onPress={navigateToAtendimento}>
+                <BoxModel title="Atendimento" desc="Fale com um de nossos especialistas da academia" type="atendimento" bgColor/>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      </SafeAreaView>
-    </GestureDetector>
-  )
+      </ScrollView>
+//    </GestureDetector>
+      )
 }
