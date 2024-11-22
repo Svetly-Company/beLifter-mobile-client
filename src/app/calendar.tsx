@@ -4,6 +4,7 @@ import { Text, View, ScrollView, TouchableHighlight, Image, ImageSourcePropType 
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {LocaleConfig} from 'react-native-calendars';
+import { router } from "expo-router";
 
 
 LocaleConfig.locales['fr'] = {
@@ -78,12 +79,25 @@ export default function TrainCalendar(){
       };
 
       const unselectedDaysCount = calculateUnselectedDays();
+    
+      
+
+      if(selectedDaysCount > 0){
+        const total = unselectedDaysCount - 1;
+      }
       const total = unselectedDaysCount - 1;
+
+      function navigateToTrain(){
+        router.navigate("../treino")
+      }
 
     return(
       <View className="bg-[#0D0D0D]">
         <View className="align-center flex flex-row mt-11 ml-2"> 
-          <CaretLeft size={30}  color="#00BF63"/>
+            <TouchableOpacity onPress={navigateToTrain}>
+            <CaretLeft size={30}  color="#00BF63"/>
+            </TouchableOpacity>
+          
           <View className="items-center justify-center w-96">
             <Text className="text-white text-xl font-ibmMedium">Calendário</Text>
           </View>
