@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, Platform, View, Text, ImageComponent, TouchableOpacity, Button, ScrollView, ImageSourcePropType, FlatList } from 'react-native';
 import { ArrowCircleRight, Barbell, Circle, Repeat, Timer } from 'phosphor-react-native'
-import {Link, router, useLocalSearchParams} from 'expo-router'
+import { useLocalSearchParams, useRouter } from 'expo-router'
 import { Image, ImageBackground } from 'expo-image';
 import Exercise from '../../components/Exercise';
 import { it } from 'rn-emoji-keyboard';
@@ -18,6 +18,7 @@ interface exercisesModel {
 export default function HomeScreen() {
   const {text, data, id, bodyPart, imgModel} = useLocalSearchParams();
   const [dados, setDados] = useState<exercisesModel[]>();
+  const router = useRouter();
 
   useEffect(() => {
     
@@ -31,15 +32,13 @@ export default function HomeScreen() {
   }, [data, id]);
 
   function navigateToPost() {
-    console.log(router)
+    router.push("/post");
   }
-
-  console.log(dados)
 
   return (
     <View style={styles.fullDiv}>
       <View>
-        <ImageBackground source={JSON.parse(imgModel as string)} style={[styles.Image]}>
+        <ImageBackground source={JSON.parse(imgModel as string || "{}")} style={[styles.Image]}>
 
           <View style={styles.topSpace}>
 
@@ -83,7 +82,7 @@ export default function HomeScreen() {
               <Text style={[styles.muscularText]}>Grupos Musculares</Text>
             </View>
             <View>
-              <Image style={styles.muscleImage} source={JSON.parse(bodyPart as string)}></Image>
+              <Image style={styles.muscleImage} source={JSON.parse(bodyPart as string || "{}")}></Image>
             </View>
             <View style={[styles.textGroup]}>
               <Text style={[styles.muscularText]}>Primarios</Text>
@@ -100,11 +99,9 @@ export default function HomeScreen() {
 
 
       <View style={[styles.bottomButton]}>
-        <Link href={"../post"} replace >
-        <TouchableOpacity style={[styles.Button]}>
+        <TouchableOpacity style={[styles.Button]} onPress={() => { navigateToPost() }}>
           <Text style={[styles.textButton]}>Finalizar treino</Text>
         </TouchableOpacity>
-        </Link>
       </View>
 
     </View>
