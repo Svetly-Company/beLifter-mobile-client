@@ -24,7 +24,7 @@ interface exercisesModel {
 interface scheduleModel {
   idWorkout: number,
   name: string,
-  description: string
+  description: string 
   image: ImageSourcePropType,
   image2: ImageSourcePropType,
   exercises: exercisesModel[]
@@ -61,13 +61,13 @@ export default function Treino(){
     function navigateToCalendar(){
       router.navigate("../calendar")
     }
-
+ 
     return(
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1}}> 
           <ScrollView className="bg-gray-950 flex-1">
           <HeaderHome/>
           <TouchableOpacity onPress={navigateToCalendar}>
-            <Frequency />
+            <Frequency /> 
           </TouchableOpacity>
           <View className="flex gap-2 flex-col mt-8">
             <Text className=" px-8 lex-1 font-ibmRegular text-white text-x">Fichas de Treino</Text>
@@ -75,7 +75,7 @@ export default function Treino(){
               schedule && scheduleExercises ? <FlatList data={schedule} renderItem={({item}) => <Workouts source={item.image} text={item.name} description={item.description} id={item.idWorkout} exerciseInfo={item.exercises} bodyPart={item.image2}></Workouts>} keyExtractor={item => item.idWorkout.toString()} horizontal/> : <View></View>
             }
             
-            <View className="flex gap-2 flex-col mt-8 px-8 pb-24">
+            <View className="flex gap-2 flex-col mt-8 px-8 pb-24"> 
               <View className="flex flex-row justify-between">
                 <Text className="text-gray-300 font-ibmMedium">Criada por:</Text>
                 <View className="flex flex-row">
@@ -98,7 +98,7 @@ export default function Treino(){
                   </View>
                 </View>
                 :
-                <View/>
+                <View/> 
               }
               </View>
             </View>

@@ -46,7 +46,7 @@ export function Workouts({source, text, description, id, exerciseInfo, bodyPart}
                         </View>
                         <View className="justify-end items-end w-full">
                             
-                            <Link href={{pathname: "(workoutsModel)/[workoutId)", params: {
+                            <Link href={{pathname: "../(workoutsModel)/[workoutId)", params: {
                                 data: JSON.stringify(exerciseInfo),
                                 imgModel: JSON.stringify(source),
                                 id,

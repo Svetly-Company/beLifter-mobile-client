@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, Platform, View, Text, ImageComponent, TouchableOpacity, Button, ScrollView, ImageSourcePropType, FlatList } from 'react-native';
 import { ArrowCircleRight, Barbell, Circle, Repeat, Timer } from 'phosphor-react-native'
-import { NavigationContainer } from '@react-navigation/native';
-import {router, useLocalSearchParams} from 'expo-router'
+import {Link, router, useLocalSearchParams} from 'expo-router'
 import { Image, ImageBackground } from 'expo-image';
-import Exercise from '../../../components/Exercise';
+import Exercise from '../../components/Exercise';
 import { it } from 'rn-emoji-keyboard';
 
 
@@ -15,14 +14,6 @@ interface exercisesModel {
   image: ImageSourcePropType
 }
 
-interface scheduleModel {
-  idWorkout: number,
-  name: string,
-  description: string
-  image: ImageSourcePropType,
-  image2: ImageSourcePropType,
-  exercises: exercisesModel[]
-}
 
 export default function HomeScreen() {
   const {text, data, id, bodyPart, imgModel} = useLocalSearchParams();
@@ -39,8 +30,8 @@ export default function HomeScreen() {
     }
   }, [data, id]);
 
-  function navigateToEdit() {
-    router.navigate("../../post");
+  function navigateToPost() {
+    console.log(router)
   }
 
   console.log(dados)
@@ -108,10 +99,12 @@ export default function HomeScreen() {
     </ScrollView>
 
 
-      <View style={[styles.bottomButton]}> 
-        <TouchableOpacity style={[styles.Button]} onPress={navigateToEdit}>
-          <Text style={[styles.textButton]}>Iniciar treino</Text>
+      <View style={[styles.bottomButton]}>
+        <Link href={"../post"} replace >
+        <TouchableOpacity style={[styles.Button]}>
+          <Text style={[styles.textButton]}>Finalizar treino</Text>
         </TouchableOpacity>
+        </Link>
       </View>
 
     </View>

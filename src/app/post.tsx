@@ -73,9 +73,6 @@ export default function PostForm() {
 
   async function handleSubmitPost(){
     try{
-      // console.log(user.token)
-      // console.log(description)
-      // console.log(image)
 
       let formData = new FormData()
       console.log(image)
@@ -106,7 +103,6 @@ export default function PostForm() {
           }
         });
 
-    // console.log(userPost)
     router.navigate('/comunidade')
     }catch(err){
       throw err
@@ -115,32 +111,7 @@ export default function PostForm() {
 
   async function uploadImage(uri : string){
     try{
-    //   const media = await axios
-    //   .post('https://belifter-server.onrender.com/upload/send',
-    //     formData,{
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data',
-    //       'Content-Length': '0'
-    //     }
-    //   }
 
-    // ).then((res) => {
-    //   if (res.data.status) {
-    //     throw new Error(String(res.data.message));
-    //   }
-
-    //   console.log(JSON.stringify(res.data))
-    // })
-    // .catch((err) => {
-    //   console.log(err)
-    // })
-
-    // const saveImage = async (uri : string) => {
-    //   const name = image.split('/')
-    //   const filename = name[name.length-1]
-    //   const dest = imgDir+filename
-    //   await FileSystem.copyAsync({from: image, to: dest})
-    // }
     const mediaUlr = await FileSystem.uploadAsync('https://belifter-server.onrender.com/upload/send', image, {
       httpMethod: 'POST',
       uploadType: FileSystem.FileSystemUploadType.MULTIPART,
@@ -157,7 +128,7 @@ export default function PostForm() {
 
 
   return (
-    <>
+    <View>
       <StatusBar translucent style="light" />
       <GestureDetector
         gesture={pan}
@@ -250,7 +221,7 @@ export default function PostForm() {
           </View>
         </View>
       </Modal>
-    </>
+    </View>
   )
 }
 

@@ -1,6 +1,6 @@
 import { Image } from "expo-image";
 import { Text, View } from "react-native";
-import { Bell, Circle } from "phosphor-react-native";
+import { Bell, Circle, PaperPlaneTilt } from "phosphor-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { CheckDay } from "../../components/CheckDay";
 import { getWeek } from "../../classes/WeekDays/WeekDays";
@@ -12,6 +12,8 @@ import CircularChart from "../../components/PieChart";
 import { BoxModel } from "../../components/BoxModel";
 import { useQuery } from "react-query"
 import axios from "axios"
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { router } from "expo-router";
 
 
 
@@ -71,7 +73,10 @@ export default function Stats() {
         <Image style={{ height: 50, width: 100 }} source={require("../../assets/beLiftSvg.svg")}></Image>
         <View className="flex-row gap-3 items-center">
           <Bell color="#fff" size={32} />
-          <Image style={{ height: 38, width: 38 }} source={require("../../assets/uil_message.svg")}></Image>
+          <TouchableOpacity onPress={()=> router.navigate("./messages")}>
+            <PaperPlaneTilt color="white" weight="bold" size={28}/>
+          </TouchableOpacity>
+
         </View>
       </View>
  

@@ -34,31 +34,32 @@ export default function Home(){
   }
 
   function navigateToAgenda(){
-    router.navigate("../agenda")
+    console.log(router)
+    router.navigate("../calendar")
   }
 
   function navigateToAtendimento(){
-    router.navigate("../atendimento")
+    router.push("../atendimento")
   }
 
   return(
 
-//    <GestureDetector gesture={pan}>
-      <ScrollView style={{flex: 1, paddingBottom: 50}}>
-          <View className="bg-gray-950 flex-1 mt-6">
+    <SafeAreaView style={{flex: 1, backgroundColor: '#030712 '}}>
+      <ScrollView style={{flex: 1, paddingBottom: 50, backgroundColor: '#030712 '}}>
+          <View className="bg-gray-950 flex-1">
               <HeaderHome user={user} link="../subWorkouts"/>
-            <View className="mt-4 mx-4 border-b-2 pb-24 ">
+            <View className="mt-4 mx-4 border-b-2 pb-36">
               <BoxModel title="Pendências" desc="Resolva suas pendências" type="pendencias"/>
               <TouchableOpacity onPress={navigateToAgenda}>
                 <BoxModel title="Agenda" desc="Veja sua agenda pessoal personalizada de treinos." type="agenda" bgColor/>
               </TouchableOpacity>
               <View className="border-GrayBar mt-4 mx-4 border"></View>
-              <TouchableOpacity onPress={navigateToAtendimento}>
+              <TouchableOpacity>
                 <BoxModel title="Atendimento" desc="Fale com um de nossos especialistas da academia" type="atendimento" bgColor/>
               </TouchableOpacity>
             </View>
           </View>
       </ScrollView>
-//    </GestureDetector>
+   </SafeAreaView>
       )
 }

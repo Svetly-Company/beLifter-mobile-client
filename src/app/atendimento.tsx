@@ -1,14 +1,19 @@
+import { router } from "expo-router";
 import { CaretLeft } from "phosphor-react-native";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Atendimentos(){
     return(
+        <SafeAreaView style={{flex: 1, backgroundColor: '#0D0D0D'}}>
         <View className="bg-[#0D0D0D] flex-1 flex gap-16">
             <View className=" flex h-min flex-row mt-3 items-center">
 
                 <View className="h-2/4 mb-1 w-4/12">
-                    <CaretLeft size={30} color="#00BF63" />
+                    <TouchableOpacity onPress={() => router.back()}>
+                        <CaretLeft size={30} color="#00BF63" />
+                    </TouchableOpacity>
                 </View>
 
                 <View className="flex flex-row gap-8">
@@ -54,6 +59,7 @@ export default function Atendimentos(){
             </View>
            
         </View>
+        </SafeAreaView>
     );
 }
 

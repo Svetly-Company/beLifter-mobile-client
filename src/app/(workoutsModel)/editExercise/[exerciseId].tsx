@@ -59,7 +59,7 @@ export default function editWorkout() {
   return (
     <View style={styles.fullDiv}>
       <View>
-        <ImageBackground source={require("../../../../assets/homemTreinando.webp")} style={[styles.Image]}>
+        <ImageBackground source={require("../../../assets/homemTreinando.webp")} style={[styles.Image]}>
 
           <View style={styles.topSpace}>
 
@@ -85,7 +85,7 @@ export default function editWorkout() {
           <View style={[styles.box, { height }]}>
             <View style={styles.topContent}>
               <View style={styles.left}>
-                <Image source={require("../../../../assets/moca.jpg")} style={styles.boxImg}>
+                <Image source={require("../../../assets/moca.jpg")} style={styles.boxImg}>
                 </Image>
               </View>
 
@@ -126,14 +126,14 @@ export default function editWorkout() {
                     </View>
 
                     <TouchableOpacity onPress={() => maxHeight == 35 ? setMaxHeight(70) : setMaxHeight(35)}>
-                      <Image source={require("../../../../assets/circle.png")} style={[styles.subInfoImage]}>
+                      <Image source={require("../../../assets/circle.png")} style={[styles.subInfoImage]}>
                       </Image>
                     </TouchableOpacity>
                   </View>
                   <View style={styles.downPart}>
 
                     <TouchableOpacity onPress={() => setOpenModal(true)}>
-                      <Image source={require("../../../../assets/circle.png")} style={styles.img}></Image>
+                      <Image source={require("../../../assets/circle.png")} style={styles.img}></Image>
                     </TouchableOpacity>
 
                     <Text style={styles.text}>Editar serie</Text>
@@ -148,7 +148,7 @@ export default function editWorkout() {
 
       <View style={[styles.bottomButton]}>
         <TouchableOpacity style={[styles.Button]} onPress={() => router.back()}>
-          <Text style={[styles.textButton]}>Finalizar treino</Text>
+          <Text style={[styles.textButton]}>Finalizar edição</Text>
         </TouchableOpacity>
       </View>
       {renderModal()}

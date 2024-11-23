@@ -87,7 +87,7 @@ export default function TabLayout(){
         tabBarStyle: {display: "none"}, 
         href: null
       }}/>
-      <Tabs.Screen name="(chat)/[chatid]" options={{
+      {/* <Tabs.Screen name="(chat)/[chatid]" options={{
         tabBarStyle: {display: "none"},
         href: null,
       }}/>
@@ -98,7 +98,7 @@ export default function TabLayout(){
       <Tabs.Screen name="(workoutsModel)/editExercise/[exerciseId]" options={{
         tabBarStyle: {display: "none"},
         href: null,
-      }}/>
+      }}/> */}
 
     </Tabs>
     </QueryClientProvider>

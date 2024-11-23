@@ -57,19 +57,7 @@ export default function RegisterScreen(){
     }catch(err){
         ToastAndroid.show(`Erro ao preencher os campos ${err}`, ToastAndroid.SHORT)
     }
-
-    
-
-    // const verifyToken = await axios.get('https://belifter-server.onrender.com/auth/profile', {
-    //     headers: {
-    //         'Authorization': `Bearer ${accessToken}`
-    //     }
-    // }).then((res) => {
-    //     return res.status==200 ? true : false
-    // })
-    
-
-    
+ 
 }
 
 
@@ -114,17 +102,6 @@ export default function RegisterScreen(){
         <TouchableOpacity onPress={registerUser} style={{backgroundColor: "#00BF63", height: 46, alignItems:"center", justifyContent: "center", marginTop: 28, borderRadius: 40}}>
           <Text className="text-white font-ibmMedium">Avançar</Text>
         </TouchableOpacity>
-
-        {/* <View className="flex-row items-center justify-around gap-22 w-full mt-28 ">
-          <View className="h-px bg-white w-40"></View>
-          <Text className="text-white text-sm">OU</Text>
-          <View className="h-px bg-white w-40"></View>
-        </View>
-
-        <TouchableOpacity style={{backgroundColor: "#ffffff", flexDirection: 'row', height: 40, alignItems:"center", justifyContent: "center", marginTop: 80, borderRadius: 40}}>
-          <Image className="w-6 h-6 mr-4" source={require('../assets/google_icon.png')}></Image>
-          <Text className="font-medium">Continuar com o Google</Text>
-        </TouchableOpacity> */}
 
       </View>
     </View>

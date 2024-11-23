@@ -34,7 +34,7 @@ export function BoxModel({ title, desc, type = "atendimento", bgColor = false, u
 
             <View className="flex-row p-2 bg-gray-600 rounded-2xl">
               <TouchableOpacity>
-                <Link href={urlRedirect || "/treino"}>
+                <Link href={urlRedirect || "../atendimento"}>
                   <CaretRight color="white" size={22}/>
                 </Link>
               </TouchableOpacity> 

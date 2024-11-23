@@ -50,18 +50,6 @@ export default function LoginScreen( ) {
         }catch(err){
             ToastAndroid.show(`Usuário inexistente ${err}`, ToastAndroid.SHORT)
         }
-
-        
-
-        // const verifyToken = await axios.get('https://belifter-server.onrender.com/auth/profile', {
-        //     headers: {
-        //         'Authorization': `Bearer ${accessToken}`
-        //     }
-        // }).then((res) => {
-        //     return res.status==200 ? true : false
-        // })
-        
-
         
     }
 
