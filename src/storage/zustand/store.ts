@@ -12,6 +12,15 @@ interface userProps{
   profilePicture: string
 }
 
+type userAcademy = {
+  academyInfo: {
+    height: string,
+    age: string,
+    weight: string
+  },
+  setAcademy: (item: any) => void
+}
+
 type userStore = {
   user: userProps,
   setUser: (item : any) => void
@@ -56,5 +65,15 @@ export const userStorage = create<userStore>((set) => ({
     profilePicture: ''
   },
   setUser: (item) => set((state) => ({user: {...item}}))
+  
+}))
+
+export const academyStorage = create<userAcademy>((set) => ({
+  academyInfo: { 
+    age: '?',
+    height: '?',
+    weight: '?'
+  },
+  setAcademy: (item) => set((state) => ({academyInfo: {...item}}))
   
 }))

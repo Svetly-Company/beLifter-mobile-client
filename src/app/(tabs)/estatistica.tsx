@@ -68,7 +68,7 @@ export default function Stats() {
 
   let week = getWeek();
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#0D0D0D' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#0D0D0D'}}>
       <View className="flex-row h-32 w-full items-center justify-between p-6 ">
         <Image style={{ height: 50, width: 100 }} source={require("../../assets/beLiftSvg.svg")}></Image>
         <View className="flex-row gap-3 items-center">
@@ -121,7 +121,10 @@ export default function Stats() {
         </View>
       </View>
       
-      <BoxModel urlRedirect="/dieta" title="Minha dieta" type="dieta" desc="Monitore sua dieta"/>
+      <View className="p-4">
+        <BoxModel urlRedirect="/dieta" title="Minha dieta" type="dieta" desc="Monitore sua dieta"/>
+      </View>
+
 
 
     </SafeAreaView>

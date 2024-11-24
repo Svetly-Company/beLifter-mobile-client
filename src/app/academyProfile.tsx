@@ -5,9 +5,9 @@ import { CaretLeft, HourglassMedium, NotePencil, Ruler, Scales } from "phosphor-
 import { Image } from "expo-image";
 
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { router } from "expo-router";
-import { userStorage } from "../storage/zustand/store";
+import { userStorage, academyStorage } from "../storage/zustand/store";
 
 
 
@@ -18,15 +18,16 @@ interface routeProp{
 // Scenes
 function FirstRoute({editable} : routeProp){
 
-
+  const academy = academyStorage((state) => state.academyInfo)
+  const {setAcademy} = academyStorage()
   const [changeEvent, setChangeEvent] = useState<string>('')
   const [age, setAge] = useState('?')
   const [weight, setWeight] = useState('?')
   const [height, setHeight] = useState('?')
   const [modalVisible, setModalVisible] = useState(false)
 
-
   function handleSentModal() {
+    setAcademy({age, weight, height})
     setModalVisible(false)
   }
 
@@ -59,12 +60,13 @@ function FirstRoute({editable} : routeProp){
     <View className="flex-1 bg-slate-[#0D0D0D] ">
       <View className="flex-row bg-[#151415] mx-8 my-4 items-center justify-center gap-10 px-6 py-6 rounded-3xl mt-12">
         <View className="border-r-2 px-8 border-[#302C30] items-center">
-        <View className={`bg-[#302C3099] rounded-full p-3 ${editable ? "border border-[#00BF63]" : "border-0"}`}>
+          <View className={`bg-[#302C3099] rounded-full p-3 ${editable ? "border border-[#00BF63]" : "border-0"}`}>
             <TouchableOpacity disabled={!editable} onPress={() => handleChangeValues('height')}>
               <Ruler color="#DADADA" size={32}/>
             </TouchableOpacity>
           </View>
-          <Text className="text-[#C6C6C6] font-ibmRegular">{isNaN(Number(height)/100) ? "?" : (Number(height)/100)} m</Text>
+          
+          <Text className="text-[#C6C6C6] font-ibmRegular">{isNaN(Number(academy.height)/100) ? "?" : (Number(academy.height)/100)} m</Text>
         </View>
 
         <View className="px-1 border-[#302C30] items-center">
@@ -75,7 +77,7 @@ function FirstRoute({editable} : routeProp){
             
           </View>
 
-          <Text className="text-[#C6C6C6] font-ibmRegular">{weight} KG</Text>
+          <Text className="text-[#C6C6C6] font-ibmRegular">{academy.weight} KG</Text>
         </View>
 
         <View className="border-l-2 px-8 border-[#302C30] items-center">
@@ -84,7 +86,7 @@ function FirstRoute({editable} : routeProp){
               <HourglassMedium color="#DADADA" size={32}/>
             </TouchableOpacity>
           </View>
-          <Text className="text-[#C6C6C6] font-ibmRegular">{age} Anos</Text>
+          <Text className="text-[#C6C6C6] font-ibmRegular">{academy.age} Anos</Text>
         </View>
       </View>
 
@@ -160,6 +162,7 @@ const FirstTabView = ({editable} : routeProp) => {
         style={{backgroundColor: '#151415', borderBottomRightRadius: 20, borderBottomLeftRadius: 20}}                    // Cor do fundo da tab
         activeColor="#ffffff"                    // Cor da aba ativa
         inactiveColor="#b0bec5"                  // Cor da aba inativa
+
         />
       )}
     />

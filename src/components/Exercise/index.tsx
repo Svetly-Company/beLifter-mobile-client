@@ -1,6 +1,6 @@
 import { Image } from "expo-image";
 import { Link } from "expo-router";
-import { ArrowCircleRight } from "phosphor-react-native";
+import { ArrowCircleRight, CaretRight } from "phosphor-react-native";
 import { ImageSourcePropType, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -28,7 +28,7 @@ export default function Exercise({title, desc, img}:exerciseProp){
         desc
       }}} asChild>
         <TouchableOpacity>
-          <ArrowCircleRight size={28} color='white'/>
+          <CaretRight size={28} color='white'/>
         </TouchableOpacity>
       </Link>
     </View>

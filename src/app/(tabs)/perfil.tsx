@@ -85,7 +85,7 @@ export default function Profile() {
 
         {/* Header with centered text and icons */}
         <View className="flex h-min flex-row mt-3 items-center justify-between px-4">
-          <TouchableOpacity onPress={() => console.log("Back pressed")}>
+          <TouchableOpacity onPress={() => router.back()}>
             <CaretLeft size={32} color="#00BF63" />
           </TouchableOpacity>
 
@@ -105,15 +105,15 @@ export default function Profile() {
           <View className="flex flex-row gap-5 py-4">
             <View className="flex gap-2 items-center">
               <Text className="font-ibmMedium text-white font-extralight">Treinamentos</Text>
-              <Text className="font-ibmMedium text-white">130</Text>
+              <Text className="font-ibmMedium text-white">4</Text>
             </View>
             <View className="flex gap-2 items-center">
               <Text className="font-ibmMedium text-white font-extralight">Seguidores</Text>
-              <Text className="font-ibmMedium text-white">2K</Text>
+              <Text className="font-ibmMedium text-white">5</Text>
             </View>
             <View className="flex gap-2 items-center">
               <Text className="font-ibmMedium text-white font-extralight">Seguindo</Text>
-              <Text className="font-ibmMedium text-white">200</Text>
+              <Text className="font-ibmMedium text-white">4</Text>
             </View>
           </View>
         </View>

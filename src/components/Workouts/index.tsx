@@ -1,5 +1,5 @@
 import {ImageSourcePropType, Text, TouchableOpacity, View} from "react-native";
-import { ArrowCircleRight } from "phosphor-react-native";
+import { ArrowCircleRight, CaretRight } from "phosphor-react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { ImageBackground } from "expo-image";
 import { Link } from "expo-router";
@@ -53,7 +53,7 @@ export function Workouts({source, text, description, id, exerciseInfo, bodyPart}
                                 text,
                                 bodyPart: JSON.stringify(bodyPart)
                             }}} asChild>
-                                <TouchableOpacity><ArrowCircleRight color="white" size={38}/></TouchableOpacity>
+                                <TouchableOpacity><CaretRight color="white" size={30}/></TouchableOpacity>
                             </Link>
                             
                         </View>

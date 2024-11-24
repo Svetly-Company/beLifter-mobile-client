@@ -204,7 +204,7 @@ export default function PostForm() {
           setModalVisible(!modalVisible);
         }}
       >
-        <View className="flex-1 justify-center items-center bg-black/50">
+        <View className="flex-1 justify-center items-center bg-black/90">
           <View
             className="w-80 p-5 rounded-lg">
             <TextInput

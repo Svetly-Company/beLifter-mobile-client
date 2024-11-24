@@ -70,7 +70,7 @@ export function Comments({idPost, comments,  refetch}:CommentsProp){
                     <FlatList
                         
                         data={comments}
-                        renderItem={({item}) => <Comment comment={item.content} author={item.authorName} authorImage={user.profilePicture}/>}
+                        renderItem={({item}) => <Comment comment={item.content} author={item.authorName} authorImage={item.profilePicture}/>}
                         keyExtractor={(item, key) => `${item}-${key}`}
                     />
                 </ScrollView>

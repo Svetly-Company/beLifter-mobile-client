@@ -1,10 +1,27 @@
 import { router } from "expo-router";
 import { CaretLeft } from "phosphor-react-native";
+import { useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Atendimentos(){
+    const [title, setTitle] = useState('')
+    const [message, setMessage] = useState('')
+    function handleSent(){
+        setTitle('')
+        setMessage('')
+        
+    }
+
+    function handleChangeTitleText(text: string){
+        setTitle(text)
+    }
+
+    function handleChangeMessage(text: string){
+        setMessage(text)
+    }
+
     return(
         <SafeAreaView style={{flex: 1, backgroundColor: '#0D0D0D'}}>
         <View className="bg-[#0D0D0D] flex-1 flex gap-16">
@@ -39,18 +56,22 @@ export default function Atendimentos(){
                     className="border border-[#322E33] rounded-xl w-10/12 pl-3 pt-1 text-white"
                     placeholder="Título da sua dúvida."
                     placeholderTextColor={'#DADADA'}
+                    value={title}
+                    onChangeText={handleChangeTitleText}
                     />
                     <TextInput
                     className="border border-[#322E33] rounded-xl w-10/12 pl-3 pt-2 h-60 align-top text-white"
                     placeholder="Digite a sua mensagem."
                     placeholderTextColor={'#DADADA'}
+                    value={message}
+                    onChangeText={handleChangeMessage}
                     />
                     
                 </View>
 
                 <View style={[styles.bottomButton]}> 
                 
-                    <TouchableOpacity style={[styles.Button]}>
+                    <TouchableOpacity style={[styles.Button]} onPress={handleSent}>
                     <Text style={[styles.textButton]}>Enviar mensagem</Text>
                     </TouchableOpacity>
                 
