@@ -128,7 +128,7 @@ export default function PostForm() {
 
 
   return (
-    <View>
+    <>
       <StatusBar translucent style="light" />
       <GestureDetector
         gesture={pan}
@@ -221,7 +221,7 @@ export default function PostForm() {
           </View>
         </View>
       </Modal>
-    </View>
+    </>
   )
 }
 

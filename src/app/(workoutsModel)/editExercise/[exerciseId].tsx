@@ -1,16 +1,18 @@
 import { useState } from 'react';
-import { Image, StyleSheet, Platform, View, Text, ImageBackground, ImageComponent, TouchableOpacity, Button, ScrollView, Modal, TextInput } from 'react-native';
+import {StyleSheet, Platform, View, Text, ImageBackground, ImageComponent, TouchableOpacity, Button, ScrollView, Modal, TextInput } from 'react-native';
 import { Barbell, Circle, PencilLine, PencilSimple, Repeat, Timer } from 'phosphor-react-native'
 import { router, useLocalSearchParams } from 'expo-router';
 import Slider from '@react-native-community/slider';
+import { Image } from 'expo-image';
 
 export default function editWorkout() {
-  const {title, desc} = useLocalSearchParams();
+  const {title, desc, img} = useLocalSearchParams();
   const [height, setHeight] = useState(90)
   const [weight, setWeight] = useState(0)
   const [reps, setReps] = useState('0')
   var [maxHeight, setMaxHeight] = useState(35)
 
+  
   function handleChangeInput(text : string){
     const numericVal = text.replace(/[^0-9]/g, "")
     setReps(numericVal)
@@ -85,8 +87,7 @@ export default function editWorkout() {
           <View style={[styles.box, { height }]}>
             <View style={styles.topContent}>
               <View style={styles.left}>
-                <Image source={require("../../../assets/moca.jpg")} style={styles.boxImg}>
-                </Image>
+                <Image source={JSON.parse(img as string)} style={{height: 46,width: 80,borderRadius: 10}} />
               </View>
 
               <View style={styles.right}>

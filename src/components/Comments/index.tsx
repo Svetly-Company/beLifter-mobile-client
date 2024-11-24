@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 import { HeartStraight } from "phosphor-react-native";
 import { Comment} from '../Comment'
 import { Subcomment } from '../subComment'
@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { ScrollView } from 'react-native-virtualized-view';
+import { Image } from 'expo-image';
 
 type CommentProps = {
     authorId: number,
@@ -23,34 +24,19 @@ interface CommentsProp{
     refetch : any
 }
 
-// interface postComment {
-//     id: number,
-//     commentContent: string
-// }
 
-// interface PostObject 
-// {author: Object, comments: [], content: string, idPost: number, likes: number, media: string}
 
 export function Comments({idPost, comments,  refetch}:CommentsProp){
     const [commentContent, setCommentContent] = useState('')
     const user = userStorage((state) => state.user)
 
 
-    // const {data : userPost} = useQuery('comment/all', async()=> {
-    //     return await axios.post(`https://belifter-server.onrender.com/posts/${idPost}/comments/create`,{
-    //         content: commentContent
-    //     },
-    //         {
-    //             headers: {
-    //                 'Authorization': `Bearer ${user.token}`
-    //             }
-    //         })
-    // })
+
 
 
     async function handleSubmitComment(){
         try{
-            // console.log(user.token, idPost, commentContent)
+
             const {data} = await axios.post(`https://belifter-server.onrender.com/posts/${idPost}/comments/create`, {
                 content: commentContent},
                 {
@@ -71,8 +57,8 @@ export function Comments({idPost, comments,  refetch}:CommentsProp){
     }
 
     return(
-        <View className='flex h-3/4'>
-            <View className='overflow-y-auto flex-1'>
+        <View className='flex h-full justify-between'>
+            <View className='flex-1'>
 
                 <View className="items-center mt-3">
                     <View className='h-1.5 bg-slate-100 w-32 rounded-3xl'></View>
@@ -80,44 +66,33 @@ export function Comments({idPost, comments,  refetch}:CommentsProp){
                     <Text className='text-white text-xl mt-2 font-ibmRegular'>Comentários</Text>
                 </View>
 
-                <ScrollView>
+                <ScrollView >
                     <FlatList
                         
                         data={comments}
-                        renderItem={({item}) => <Comment comment={item.content} author={item.authorName}/>}
+                        renderItem={({item}) => <Comment comment={item.content} author={item.authorName} authorImage={user.profilePicture}/>}
                         keyExtractor={(item, key) => `${item}-${key}`}
                     />
                 </ScrollView>
                 
 
-            {/* {
-                comments.map((item) => <Comment comment={item.content}></Comment>)
-            } */}
-                {/* <Comment></Comment>
-                <Subcomment></Subcomment>
-
-                <Comment></Comment>
-                <Subcomment></Subcomment>
-
-                <Comment></Comment>
-                <Subcomment></Subcomment> */}
             </View>
 
-            <View className='h-1/4 position: sticky bg-gray-800 flex flex-row content-between w-full'>
-                <View className='ml-4 mt-12'>
-                    <Image source={require('../../assets/moca.jpg')} className="w-12 h-12 rounded-full" />
-                    
+            <View className='flex flex-row content-between w-full py-8'>
+                <View className='flex-row items-center justify-center gap-6'>
+                    <Image source={user.profilePicture} style={{width: 48, height: 48, borderRadius: 100}}/>
+                    <View className=''>
+                        <TextInput 
+                            className='border-b-2 border-white w-96 font-ibmRegular text-white'
+                            placeholder='Adicione um comentário...'
+                            placeholderTextColor={"#fff"}
+                            value={commentContent}
+                            onChangeText={handleCommentChange}
+                            onSubmitEditing={handleSubmitComment}
+                        />
+                    </View>
                 </View>
-                <View className='ml-3 mt-12'>
-                    <TextInput 
-                        className='border-b-2 border-white w-96 font-ibmRegular text-white'
-                        placeholder='Adicione um comentário...'
-                        placeholderTextColor={"#fff"}
-                        value={commentContent}
-                        onChangeText={handleCommentChange}
-                        onSubmitEditing={handleSubmitComment}
-                    />
-                </View>
+                
                 
             </View>
         </View>

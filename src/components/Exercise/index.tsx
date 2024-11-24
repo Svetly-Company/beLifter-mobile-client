@@ -23,6 +23,7 @@ export default function Exercise({title, desc, img}:exerciseProp){
         </View>
       </View>
       <Link href={{pathname: "editExercise/[exerciseId]", params: {
+        img: JSON.stringify(img),
         title,
         desc
       }}} asChild>

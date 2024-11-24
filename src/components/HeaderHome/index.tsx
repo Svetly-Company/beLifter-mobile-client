@@ -1,4 +1,5 @@
-import { Image, Text, View, ImageBackground, TouchableOpacity, StyleSheet  } from "react-native";
+import {Text, View, ImageBackground, TouchableOpacity, StyleSheet  } from "react-native";
+import { Image } from "expo-image";
 import {Bell, CaretRight} from "phosphor-react-native"
 import { Link, router } from "expo-router";
 
@@ -8,7 +9,8 @@ interface userProps{
   email: string,
   exp: number,
   iat: number,
-  token: string
+  token: string,
+  profilePicture: string
 }
 
 interface identify{
@@ -22,6 +24,7 @@ interface HeaderHomeParams{
 
 export default function HeaderHome({user, link} : HeaderHomeParams){
 
+
   function handleNavigate(){
     router.navigate(link ? link : '/comunidade')
   }
@@ -32,7 +35,7 @@ export default function HeaderHome({user, link} : HeaderHomeParams){
           user ? 
           <View className="py-6 flex-row justify-around items-center">
           <TouchableOpacity onPress={() => router.navigate("../academyProfile")}>
-            <Image source={require('../../assets/moca.jpg')} className="w-14 h-14 rounded-full" />
+            <Image source={user.profilePicture} style={{width: 48, height: 48, borderRadius: 100}} />
           </TouchableOpacity>
           <View className="items-center">
             <Text className="text-[#C6C6C6] font-ibmRegular">Bem vindo(a),</Text>

@@ -32,7 +32,7 @@ export default function HomeScreen() {
   }, [data, id]);
 
   function navigateToPost() {
-    router.push("/post");
+    router.push("../post");
   }
 
   return (

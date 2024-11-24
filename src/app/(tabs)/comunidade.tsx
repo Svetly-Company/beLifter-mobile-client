@@ -12,6 +12,7 @@ import { router } from "expo-router";
 
 interface authorObject {
     name: string
+    profilePicture: string
 }
 
 export default function Comunidade(){
@@ -38,7 +39,7 @@ export default function Comunidade(){
         }
         
     })
-    
+    posts.forEach((item) => console.log(item.media))
    
     return(
     <SafeAreaView style={{flex: 1}}>
@@ -70,7 +71,7 @@ export default function Comunidade(){
             </View>
             <FlatList
                 data={posts}
-                renderItem={({item}) => <Post image={item.media} content={item.content} id={item.idPost} comments={item.comments} author={item.author.name} refetch={refetch}  />}
+                renderItem={({item}) => <Post image={item.media} content={item.content} id={item.idPost} comments={item.comments} author={item.author.name} authorPicture={item.author.profilePicture} refetch={refetch}  />}
                 keyExtractor={item => item.idPost.toString()}
                 style={{paddingBottom: 100}}
             />

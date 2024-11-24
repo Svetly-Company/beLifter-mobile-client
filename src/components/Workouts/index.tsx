@@ -33,7 +33,7 @@ interface scheduleModel {
 export function Workouts({source, text, description, id, exerciseInfo, bodyPart}:TWorkout){
     const [list, setList] = useState([])
 
-
+    console.log(source)
     return(
         <View className="w-72 h-72 px-4 border-box">
             <ImageBackground style={{flex: 1}}

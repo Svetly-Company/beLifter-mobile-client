@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Image, ScrollView, FlatList, ImageSourcePropType } from "react-native";
+import { View, Text, TouchableOpacity, FlatList, ImageSourcePropType } from "react-native";
+import { ScrollView } from "react-native-virtualized-view";
 import { CaretLeft, UploadSimple, DotsThree, CaretDown, Fire, Footprints, Gauge, CalendarBlank, TrendUp, Barbell, PersonSimple } from "phosphor-react-native";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { userStorage } from "../../storage/zustand/store";
 import { Post } from "../../components/Post";
+import { Image } from "expo-image";
+import { router } from "expo-router";
 
 interface PostObject { 
   id: number; 
@@ -21,6 +24,7 @@ interface StatisticType {
 interface PanelItemType {
   label: string;
   Icon: React.ReactNode;
+  Routing: string
 }
 
 const statisticsData: StatisticType[] = [
@@ -30,30 +34,31 @@ const statisticsData: StatisticType[] = [
 ];
 
 const panelItemsData: PanelItemType[] = [
-  { label: "Estatísticas", Icon: <TrendUp size={20} color="#00BF63" /> },
-  { label: "Exercícios", Icon: <Barbell size={20} color="#00BF63" /> },
-  { label: "Medições", Icon: <PersonSimple size={20} color="#00BF63" /> },
-  { label: "Calendários", Icon: <CalendarBlank size={20} color="#00BF63" /> }
+  { label: "Estatísticas", Icon: <TrendUp size={20} color="#00BF63" />, Routing: "./estatistica" },
+  { label: "Exercícios", Icon: <Barbell size={20} color="#00BF63" />, Routing: "./treino" },
+  { label: "Medições", Icon: <PersonSimple size={20} color="#00BF63" />, Routing: "../academyProfile" },
+  { label: "Calendários", Icon: <CalendarBlank size={20} color="#00BF63" />, Routing: "../calendar" }
 ];
 
 export default function Profile() {
   const user = userStorage((state) => state.user);
   const [posts, setPosts] = useState<PostObject[]>([]);
-
-  const { data: userPost, refetch } = useQuery('posts/me', async () => {
+  
+  console.log(user.token)
+  const { data: userData, refetch } = useQuery('posts/me', async () => {
     const response = await axios.get('https://belifter-server.onrender.com/profile/me', {
       headers: {
         'Authorization': `Bearer ${user.token}`
       }
     });
-    return response.data.posts;
+    return response.data;
   });
 
   useEffect(() => {
-    if (userPost) {
-      setPosts(userPost);
+    if (userData) {
+      setPosts(userData.posts);
     }
-  }, [userPost]);
+  }, [userData]);
 
   const renderStatistic = (stat: StatisticType) => (
     <View className="w-2/6 items-center py-4">
@@ -64,15 +69,18 @@ export default function Profile() {
   );
 
   const renderPanelItem = (item: PanelItemType) => (
-    <View className="bg-neutral-900 w-5/12 h-14 gap-2 flex-row items-center justify-center rounded-2xl">
-      {item.Icon}
-      <Text className="font-ibmRegular text-base text-white py-4">{item.label}</Text>
-    </View>
+    <TouchableOpacity style={{width: '42%'}} onPress={() => router.navigate(item.Routing)}>
+      <View className="bg-neutral-900 w-full h-14 gap-2 flex-row items-center justify-center rounded-2xl">
+        {item.Icon}
+        <Text className="font-ibmRegular text-base text-white py-4">{item.label}</Text>
+      </View>
+    </TouchableOpacity>
+
   );
 
   return (
     <View className="flex-1 bg-black">
-      <View className="h-96 rounded-b-3xl flex flex-col bg-neutral-900">
+      <View className="rounded-b-3xl flex flex-col bg-neutral-900">
         <View className="h-12"></View>
 
         {/* Header with centered text and icons */}
@@ -93,7 +101,7 @@ export default function Profile() {
         {/* Profile Details Section */}
         <View className="flex mt-3 gap-3 mx-8">
         <View className="flex w-full flex-row justify-between items-center">
-          <Image source={require('../../assets/moca.jpg')} className="w-24 h-24 rounded-full mr-5" />
+          <Image source={user.profilePicture} style={{width: 90, height: 90, borderRadius: 100, marginRight: 20}} />
           <View className="flex flex-row gap-5 py-4">
             <View className="flex gap-2 items-center">
               <Text className="font-ibmMedium text-white font-extralight">Treinamentos</Text>
@@ -117,7 +125,7 @@ export default function Profile() {
         </View>
 
         {/* Edit Profile Button */}
-        <View className="flex items-center mt-5">
+        <View className="flex items-center mt-4">
           <TouchableOpacity
             style={{
               backgroundColor: "#00BF63",
@@ -166,7 +174,7 @@ export default function Profile() {
           <Text className="ml-10 mt-3 text-white text-xl font-ibmMedium">Postagens</Text>
           <FlatList
           data={posts}
-          renderItem={({ item }) => <Post image={item.mediaUrl} content={item.content} id={item.id} author={user.name} refetch={refetch} />}
+          renderItem={({ item }) => <Post image={item.mediaUrl} content={item.content} id={item.id} author={user.name} refetch={refetch} authorPicture={user.profilePicture}/>}
           keyExtractor={item => item.id.toString()}
           style={{ paddingBottom: 100 }}
           />

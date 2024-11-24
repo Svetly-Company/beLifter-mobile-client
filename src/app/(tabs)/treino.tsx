@@ -27,12 +27,12 @@ interface scheduleModel {
   description: string 
   image: ImageSourcePropType,
   image2: ImageSourcePropType,
-  exercises: exercisesModel[]
+  exercises: exercisesModel[] 
 }
 
 export default function Treino(){
     let [status, setStatus] = useState(false);
-    const user = userStorage((state) => state.user)
+    const user = userStorage((state) => state.user) 
     const [schedule, setSchedule] = useState<scheduleModel[]>()
     const [scheduleExercises, setScheduleExercises] = useState<exercisesModel[]>()
 
@@ -73,7 +73,7 @@ export default function Treino(){
             <Text className=" px-8 lex-1 font-ibmRegular text-white text-x">Fichas de Treino</Text>
             {
               schedule && scheduleExercises ? <FlatList data={schedule} renderItem={({item}) => <Workouts source={item.image} text={item.name} description={item.description} id={item.idWorkout} exerciseInfo={item.exercises} bodyPart={item.image2}></Workouts>} keyExtractor={item => item.idWorkout.toString()} horizontal/> : <View></View>
-            }
+            } 
             
             <View className="flex gap-2 flex-col mt-8 px-8 pb-24"> 
               <View className="flex flex-row justify-between">

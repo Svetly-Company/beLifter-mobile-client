@@ -1,14 +1,16 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text } from 'react-native';
 import { HeartStraight } from "phosphor-react-native";
+import { Image } from 'expo-image';
 
 
 
 interface CommentProps{
     comment: string,
-    author: string
+    author: string,
+    authorImage: string
 }
 
-export function Comment({comment, author}:CommentProps){
+export function Comment({comment, author, authorImage}:CommentProps){
     return(
         <View>
 
@@ -16,7 +18,7 @@ export function Comment({comment, author}:CommentProps){
 
                 <View className="flex gap-3 ml-10 mt-5">
 
-                    <Image source={require('../../assets/moca.jpg')} className="w-12 h-12 rounded-full" />
+                    <Image source={authorImage} style={{height: 50, width: 50, borderRadius: 100}} />
                   
                 </View>
                     
@@ -25,16 +27,12 @@ export function Comment({comment, author}:CommentProps){
                     <View className='flex ml-2 mt-4 h-min'>
                             <View className='flex flex-row'>
                                 <Text className="text-white font-ibmMedium ml-2 text-lg">{author}</Text>
-                                <Text className="text-slate-300 text-base mt-0.5 ml-7 font-ibmRegular">Há 5 Horas</Text>
+                                <Text className="text-slate-300 text-base mt-0.5 ml-7 font-ibmRegular"></Text>
                             </View>
                              
                             <Text className='text-white font-ibmRegular ml-2 text-lg'>{comment}</Text>
                     </View>
 
-                </View>
-
-                <View className='ml-6 mt-9'>
-                    <HeartStraight size={23} color="white" weight="regular"/>
                 </View>
             </View>
         </View>

@@ -8,7 +8,8 @@ interface userProps{
   email: string,
   exp: number,
   iat: number,
-  token: string
+  token: string,
+  profilePicture: string
 }
 
 type userStore = {
@@ -51,7 +52,8 @@ export const userStorage = create<userStore>((set) => ({
     email: '',
     exp: 0,
     iat: 0,
-    token: ''
+    token: '',
+    profilePicture: ''
   },
   setUser: (item) => set((state) => ({user: {...item}}))
   
